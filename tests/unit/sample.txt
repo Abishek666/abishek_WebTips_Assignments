@@ -1,0 +1,2 @@
+This is a sample text file meant to demonstrate the tests folder structure.
+When writing an actual test, write the tests add in a .test.js file and add it to this folder. 
