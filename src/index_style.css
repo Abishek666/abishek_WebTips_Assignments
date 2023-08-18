@@ -7,19 +7,31 @@
 }
 
 .headerimg{
-    background:linear-gradient(0deg, rgba(0 0 0 / 30%), rgba(0 0 0 / 30%)), url("../Assets/HTML&CSS/GeneralImages&Icons/background.svg");
+    background:linear-gradient(0deg, rgba(0 0 0 / 100%), rgba(0 0 0 / 30%)), url("../Assets/HTML&CSS/GeneralImages&Icons/background.svg");
     color: beige;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    height: 50vh;
     display: flex;
     align-content:flex-end ;
+    height: 50vh;
+    position: relative;
+}
+
+#optionselect
+{position: absolute; 
+    bottom: 0;
+     width: 17vw;
+      color: aliceblue;
+       font-size: 2vw; 
+       height: 9vh;
+        border: none;
+        text-align: center ;
+        background-color: rgba(253, 253, 253, 0.116); 
 }
 
 .topsegment{
     display: grid;
-    grid-template-columns:1.7fr 1.4fr 3.1fr;
     grid-auto-rows: minmax(5vh,auto);
     grid-gap: 1.5vw;
     height: 80%;
@@ -60,7 +72,28 @@
 
 #time{
     display:flex;
-    height:fit-content;
+    
+}
+#time-text
+{
+   color:rgb(231, 231, 130);
+    display:flex;
+     justify-content: flex-end;
+      align-items: end;
+       justify-items: end;
+        font-size: 2vw;
+}
+#time-img
+{
+    display: flex;
+     align-items: center; 
+     padding: 2px;
+      width:6vw;
+       height: 8vh; 
+}
+#date-text
+{
+    font-size: 2vw;
 }
 
 #topimg{
@@ -72,12 +105,20 @@
    animation-timing-function: ease-in-out;
    margin-left: 0;
 }
-
+.topic{
+    width: 4vw;
+    height: 4vh;
+}
 @keyframes animtopimg
 {
     from {left: -50px;}
     to {left: 1px;}
 }
+#y,#x,#z,#w
+{
+    font-size: 1.25vw;
+}
+
 
 #topimg1{
     margin-left: 0;
@@ -115,6 +156,7 @@
 .scrollicon
    {
     height:15%;
+   
     }
 
 .num{
@@ -138,6 +180,10 @@
     animation-duration: 40s;
     animation-delay: -5;
     animation-iteration-count:infinite;
+     position: absolute;
+      width: 30vw; 
+      opacity: 0.3;
+       height: 15vw;
 }
 
 @keyframes animcloudleft {
@@ -158,7 +204,12 @@
     animation-duration: 40s;
     animation-delay: -5;
     animation-iteration-count:infinite;
-}
+    position: absolute; 
+    right: 0;
+     width: 40vw;
+      opacity: 0.3;
+       height: 20vw;
+    }
 
 @keyframes animcloudright {
     0% { top: 1vh;
@@ -176,6 +227,174 @@
         top:1vh;
         opacity: 0.2;
     }
+}
+
+@media (width>=700px){
+    .topsegment {
+        grid-template-columns:1.7fr 1.4fr 3.1fr;
+    }
+
+}
+
+@media (width <= 700px)
+{
+
+    .topsegment
+    {  width: 100%;
+       height: 90%;
+        grid-template-areas: "a b"
+                            "c c" ;
+        grid-template-columns: 2fr 1.7fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #topfront
+    {
+        grid-area: a;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "x y" 
+                              "z z";
+        grid-template-rows: 2fr 1fr;
+    }
+    #topimg1{
+        display: grid;
+        justify-self: center;
+        grid-area:x ;
+      
+    }
+     #topimg
+     {
+        width: 17vw;
+        height: 17vh;
+     }
+    #cityselect
+    {  
+        grid-area:y;   
+        
+    }
+    #optionselect
+    {   font-size: 3vw;
+        width: 27vw;
+    }
+    #rightdown
+    {   display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-area:z;  
+    }
+     #time
+     {   display: flex; 
+        justify-content: space-evenly;
+        align-items: end;
+     }
+     #date
+
+     {  display: flex; 
+        align-items: end;
+        justify-content: center;
+     }
+     #date-text 
+     {
+        font-size: 2.5vw;
+     } 
+     #time-text
+     {
+        font-size: 3vw;
+     }
+     #time-img
+     {
+        width: 8vw;
+        height: 8vw;
+        display: flex;
+        align-items: start;
+     }
+       #topmidddle
+    {
+        grid-area: b;
+    }
+    #topend
+    {
+      
+        grid-area: c;
+    }
+.headerimg
+{
+    height: 70vh;
+}
+.topscrollitems
+{
+    height: 70%;
+
+}
+.topscrollitems
+{
+    font-size: 2vw;
+}
+#y,#x,#z,#w
+{
+    font-size: 2vw;
+}
+
+
+
+
+
+
+
+
+.leftcloud
+{animation-name: animcloudleft ;
+    animation-timing-function: ease-in-out;
+    animation-duration: 30s;
+    animation-delay: -5;
+    animation-iteration-count:infinite;
+    width: 40vw;
+    height: 30vh;
+}
+
+@keyframes animcloudleft {
+    from {
+        top: 20vh;
+        left: -20vw;
+          opacity: 0.2;
+    }
+    
+    to {
+        top: 20vh;
+        left:70vw; 
+        opacity: 0.1;
+    }
+ }
+
+.rightcloud
+{animation-name: animcloudright ;
+    animation-timing-function: ease-in-out;
+    animation-duration: 40s;
+    animation-delay: -5;
+    animation-iteration-count:infinite;
+    width: 50vw;
+    height: 40vh;
+}
+
+@keyframes animcloudright {
+    0% { top: 1vh;
+        right: 1vw;
+        opacity: 0.1;}
+  
+    50%{right:50vw;
+          top:30vh;
+          opacity: 0.5;
+    }
+   
+    100%
+    {
+        right:100vw;
+        top:1vh;
+        opacity: 0.2;
+    }
+}
+
+
+
 }
    
   

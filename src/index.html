@@ -13,8 +13,8 @@
     </head>
     <body>
         <div class="headerimg">
-            <img alt="x" class="leftcloud" style="  position: absolute; width: 30vw; opacity: 0.3; height: 15vw;" src="../Assets/HTML&CSS/cloud-8121.png">
-            <img alt="x" class="rightcloud" style="   position: absolute; right: 0; width: 40vw; opacity: 0.3; height: 20vw;" src="../Assets/HTML&CSS/cloud-8121.png">
+            <img alt="x" class="leftcloud" src="../Assets/HTML&CSS/cloud-8121.png">
+            <img alt="x" class="rightcloud" src="../Assets/HTML&CSS/cloud-8121.png">
             <div class="topsegment">
                 <div id="topfront">
                     <div id="topimg1">
@@ -22,7 +22,7 @@
                     </div>
 
                     <div id="cityselect" style="position: relative;">
-                        <select style=" position: absolute; bottom: 0; width: 17vw; color: aliceblue; font-size: 2vw; height: 9vh; border: none;text-align: center ;background-color: rgba(253, 253, 253, 0.116); ">
+                        <select id="optionselect">
                             <option>New Delhi</option>
                             <option>New abi</option>
                         </select>
@@ -32,25 +32,25 @@
                     </div>
                     <div id="rightdown" style="position:relative; bottom: 0;">
                         <div id="time" class="a">
-                            <h6 style=" color:rgb(231, 231, 130); display:flex; justify-content: flex-end; align-items: end; justify-items: end; font-size: 2vw;">
+                            <h6 id="time-text">
                                 10:10: <small> 44 </small>
                             </h6>
-                            <img alt="x" style="display: flex; align-items: center; padding: 2px; width:6vw; height: 8vh; ;" src="../Assets/HTML&CSS/GeneralImages&Icons/amState.svg">
+                            <img alt="x" id="time-img" src="../Assets/HTML&CSS/GeneralImages&Icons/amState.svg">
                         </div>
                         <div id="date" class="a">
-                            <h6 style="font-size: 2vw;">01-MAR-2022</h6>
+                            <h6 id="date-text">01-MAR-2022</h6>
                         </div>
                     </div>
                 </div>
                 <div id="topmiddle" style="position: relative;">
                     <div id="celcius" style="position: relative; ">
-                        <div id="y" style="position:absolute; bottom:0; right:0; margin-bottom: 10px; padding: 10px; border-right: 2px dotted rgba(252, 252, 252, 0.2); ">
+                        <div id="y" style="position:absolute;  bottom:0; right:0; margin-bottom: 10px; padding: 10px; border-right: 2px dotted rgba(252, 252, 252, 0.2); ">
                             <h2 style="margin: 0; font-weight: 500; color: rgb(255,255,255,0.7);">Temp &deg C</h2>
                             <h2 style="margin: 0;">25C</h2>
                         </div>
                     </div>
                     <div id="farenh" style="position: relative; ">
-                        <div id="x" style="position:absolute; top:0; right:0;margin-top: 10px;padding: 10px; padding: 10px; border-right: 2px dotted  rgba(252, 252, 252, 0.2);">
+                        <div id="x" style="position:absolute;  top:0; right:0;margin-top: 10px;padding: 10px; padding: 10px; border-right: 2px dotted  rgba(252, 252, 252, 0.2);">
                             <h2 style="margin: 0; font-weight: 500; color: rgb(255,255,255,0.7);">Temp&nbsp;&nbsp; F </h2>
                             <h2 style="margin: 0;">78F</h2>
                         </div>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div id="precip" style="position: relative;">
-                        <div id="w" style="position:absolute; top:0; left:0;margin-top: 10px;padding: 10px;">
+                        <div id="w" style="position:absolute;top:0; left:0;margin-top: 10px;padding: 10px;">
                             <h2 style="font-weight: 500; color: rgb(255,255,255,0.7);">Precipitation</h2>
                             <h2>0%</h2>
                         </div>
@@ -74,7 +74,7 @@
                         <div class="item-time">now</div>
                         <div class="pipe">|</div>
                         <div class="scrollicon">
-                            <img alt="x" class="top_ic" src="../Assets/HTML&CSS/Weather_Icons/cloudyIcon.svg">
+                            <img alt="x" class="topic" src="../Assets/HTML&CSS/Weather_Icons/cloudyIcon.svg">
                         </div>
                         <div>6</div>
                     </div>
@@ -89,7 +89,7 @@
                         <div class="item-time">11 AM</div>
                         <div class="pipe">|</div>
                         <div class="scrollicon">
-                            <img alt="x" class="top_ic" src="../Assets/HTML&CSS/Weather_Icons/rainyIcon.svg">
+                            <img alt="x" class="topic" src="../Assets/HTML&CSS/Weather_Icons/rainyIcon.svg">
                         </div>
                         <div class="num">7</div>
                     </div>
@@ -104,7 +104,7 @@
                         <div class="item-time">12 PM</div>
                         <div class="pipe">|</div>
                         <div class="scrollicon">
-                            <img alt="x" class="top_ic" src="../Assets/HTML&CSS/Weather_Icons/windyIcon.svg">
+                            <img alt="x" class="topic" src="../Assets/HTML&CSS/Weather_Icons/windyIcon.svg">
                         </div>
                         <div class="num">7</div>
                     </div>
@@ -119,7 +119,7 @@
                         <div class="item-time">1 PM</div>
                         <div class="pipe">|</div>
                         <div class="scrollicon">
-                            <img alt="x" class="top_ic" src="../Assets/HTML&CSS/Weather_Icons/rainyIcon.svg">
+                            <img alt="x" class="topic" src="../Assets/HTML&CSS/Weather_Icons/rainyIcon.svg">
                         </div>
                         <div class="num">8</div>
                     </div>
@@ -134,7 +134,7 @@
                         <div class="item-time">2 PM</div>
                         <div class="pipe">|</div>
                         <div class="scrollicon">
-                            <img alt="x" class="top_ic" src="../Assets/HTML&CSS/Weather_Icons/windyIcon.svg">
+                            <img alt="x" class="topic" src="../Assets/HTML&CSS/Weather_Icons/windyIcon.svg">
                         </div>
                         <div class="num">8</div>
                     </div>
@@ -149,12 +149,13 @@
                         <div class="item-time">3 PM</div>
                         <div class="pipe">|</div>
                         <div class="scrollicon">
-                            <img alt="x" class="top_ic" src="../Assets/HTML&CSS/Weather_Icons/rainyIcon.svg">
+                            <img alt="x" class="topic" src="../Assets/HTML&CSS/Weather_Icons/rainyIcon.svg">
                         </div>
                         <div class="num">6</div>
                     </div>
                 </div>
             </div>
         </div>
+
     </body>
 </html>
