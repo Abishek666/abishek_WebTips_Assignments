@@ -6,6 +6,16 @@
     overscroll-behavior: none;
 }
 
+#rightdown
+{position:relative; 
+    bottom: 0;
+}
+
+#celcius
+{
+    position: relative;
+}
+
 .headerimg{
     background:linear-gradient(0deg, rgba(0 0 0 / 100%), rgba(0 0 0 / 30%)), url("../Assets/HTML&CSS/GeneralImages&Icons/background.svg");
     color: beige;
@@ -27,7 +37,7 @@
        height: 9vh;
         border: none;
         text-align: center ;
-        background-color: rgba(253, 253, 253, 0.116); 
+        background-color: rgba(253 253 253 / 11.6%); 
 }
 
 .topsegment{
@@ -62,8 +72,95 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr ;
     grid-auto-flow:column;
+    position: relative;
 }
-   
+
+#y
+{
+    position:absolute; 
+     bottom:0;
+      right:0;
+       margin-bottom: 10px;
+        padding: 10px;
+         border-right: 2px dotted rgba(252 252  252 / 20%); 
+}
+
+#tempc
+{
+    margin: 0;
+     font-weight: 500;
+      color: rgb(255 255 255 /  70%);
+}
+
+#tempval
+{
+    margin: 0;
+}
+
+#farenh
+{
+    position: relative;
+}
+
+#x
+{
+    position:absolute;  
+    top:0;
+     right:0;
+     margin-top: 10px;
+     padding: 10px;
+      border-right: 2px dotted  rgba(252 252 252 / 20%);
+}
+
+#tempf{
+    margin: 0; 
+    font-weight: 500; 
+    color: rgb(255 255 255 / 70%);
+}
+
+#tempfval
+{
+    margin: 0;
+}
+
+#humid
+{
+    position: relative; 
+}
+
+#z
+{position:absolute;
+     bottom:0;
+      left:0;
+       margin-bottom: 10px;
+       padding: 10px;
+}
+
+#humidtext
+{
+    font-weight: 500;
+     color: rgb(255 255 255 / 70%);
+}
+ 
+#precip{
+position: relative;
+}
+
+#w
+{
+    position:absolute;
+    top:0; 
+    left:0;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+#precip-text
+{
+    font-weight: 500;
+     color: rgb(255 255 255 0.7);
+}
+
 #topend{
     display: flex;
     justify-content: space-evenly;
@@ -72,25 +169,26 @@
 
 #time{
     display:flex;
-    
 }
+
 #time-text
 {
-   color:rgb(231, 231, 130);
+   color:rgb(231 231 130);
     display:flex;
      justify-content: flex-end;
       align-items: end;
        justify-items: end;
         font-size: 2vw;
 }
+
 #time-img
-{
-    display: flex;
+{  display: flex;
      align-items: center; 
      padding: 2px;
       width:6vw;
        height: 8vh; 
 }
+
 #date-text
 {
     font-size: 2vw;
@@ -99,21 +197,24 @@
 #topimg{
    height: 15vh;
    width: 10vw;
- padding: 0;
+   padding: 0;
    position: relative;
    animation: animtopimg 2s 1;
    animation-timing-function: ease-in-out;
    margin-left: 0;
 }
+
 .topic{
     width: 4vw;
     height: 4vh;
 }
+
 @keyframes animtopimg
 {
     from {left: -50px;}
     to {left: 1px;}
 }
+
 #y,#x,#z,#w
 {
     font-size: 1.25vw;
@@ -237,69 +338,71 @@
 }
 
 @media (width <= 700px)
-{
-
-    .topsegment
+{   .topsegment
     {  width: 100%;
        height: 90%;
-        grid-template-areas: "a b"
-                            "c c" ;
-        grid-template-columns: 2fr 1.7fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template: "a b" 1fr
+                       "c c" 1fr / 2fr 1.7fr ;
     }
 
     #topfront
     {
         grid-area: a;
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: "x y" 
-                              "z z";
-        grid-template-rows: 2fr 1fr;
+       grid-template: "x y" 2fr 
+                            "z z" 1fr / 1fr 1fr;
+    
     }
+
     #topimg1{
         display: grid;
         justify-self: center;
         grid-area:x ;
-      
-    }
+      }
+
      #topimg
      {
         width: 17vw;
         height: 17vh;
      }
+
     #cityselect
     {  
         grid-area:y;   
-        
     }
+
     #optionselect
     {   font-size: 3vw;
         width: 27vw;
     }
+
     #rightdown
     {   display: grid;
         grid-template-columns: 1fr 1fr;
         grid-area:z;  
     }
+
      #time
      {   display: flex; 
         justify-content: space-evenly;
         align-items: end;
      }
-     #date
 
-     {  display: flex; 
+     #date
+      {  display: flex; 
         align-items: end;
         justify-content: center;
      }
+
      #date-text 
      {
         font-size: 2.5vw;
-     } 
+     }
+
      #time-text
      {
         font-size: 3vw;
      }
+
      #time-img
      {
         width: 8vw;
@@ -307,28 +410,28 @@
         display: flex;
         align-items: start;
      }
+
        #topmidddle
     {
         grid-area: b;
     }
+
     #topend
     {
-      
-        grid-area: c;
+      grid-area: c;
     }
+
 .headerimg
 {
     height: 70vh;
 }
+
 .topscrollitems
 {
     height: 70%;
-
-}
-.topscrollitems
-{
     font-size: 2vw;
 }
+
 #y,#x,#z,#w
 {
     font-size: 2vw;
