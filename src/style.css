@@ -6,19 +6,18 @@
     overscroll-behavior: none;
 }
 
-#rightdown
-{position:relative; 
+.right-down{
+    position:relative; 
     bottom: 0;
 }
 
-#celcius
-{
+.celcius{
     position: relative;
 }
 
-.headerimg{
+.header-img{
     background:linear-gradient(0deg, rgba(0 0 0 / 100%), rgba(0 0 0 / 30%)), url("../Assets/HTML&CSS/GeneralImages&Icons/background.svg");
-    color: beige;
+    color: rgb(255 255 255 /  90%);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -28,8 +27,8 @@
     position: relative;
 }
 
-#optionselect
-{position: absolute; 
+#option-select{
+    position: absolute; 
     bottom: 0;
      width: 17vw;
       color: aliceblue;
@@ -40,7 +39,7 @@
         background-color: rgba(253 253 253 / 11.6%); 
 }
 
-.topsegment{
+.top-segment{
     display: grid;
     grid-auto-rows: minmax(5vh,auto);
     grid-gap: 1.5vw;
@@ -51,23 +50,15 @@
     animation-timing-function: ease;
 }
 
-
-@keyframes animtop 
-{
-    from {top: -50px;}
-    to {top: 1px;}
-}
-
-#topfront
-{
+.top-front{
    display: grid;
     grid-template-columns: 1fr 1.5fr;
     grid-template-rows: 1fr 1fr;
     grid-gap: 1vw;
 } 
 
-#topmiddle
- {      display: grid;
+.top-middle{      
+    display: grid;
      font-size: 14px;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr ;
@@ -75,35 +66,30 @@
     position: relative;
 }
 
-#y
-{
+#y{
     position:absolute; 
      bottom:0;
-      right:0;
-       margin-bottom: 10px;
-        padding: 10px;
-         border-right: 2px dotted rgba(252 252  252 / 20%); 
+    right:0;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-right: 2px dotted rgba(252 252  252 / 20%); 
 }
 
-#tempc
-{
+#temp-c{
     margin: 0;
-     font-weight: 500;
-      color: rgb(255 255 255 /  70%);
+    font-weight: 500;
+    color: rgb(255 255 255 /  70%);
 }
 
-#tempval
-{
+#tempc-val{
     margin: 0;
 }
 
-#farenh
-{
+.farenh{
     position: relative;
 }
 
-#x
-{
+#x{
     position:absolute;  
     top:0;
      right:0;
@@ -112,42 +98,42 @@
       border-right: 2px dotted  rgba(252 252 252 / 20%);
 }
 
-#tempf{
+#temp-f{
     margin: 0; 
     font-weight: 500; 
     color: rgb(255 255 255 / 70%);
 }
 
-#tempfval
-{
+#tempf-val{
     margin: 0;
 }
 
-#humid
-{
+.humid{
     position: relative; 
 }
 
-#z
-{position:absolute;
+#z{
+    position:absolute;
      bottom:0;
       left:0;
        margin-bottom: 10px;
        padding: 10px;
 }
 
-#humidtext
-{
+#humid-text{
     font-weight: 500;
      color: rgb(255 255 255 / 70%);
 }
  
-#precip{
+.precip{
 position: relative;
 }
 
-#w
-{
+.city-select{
+    position: relative;
+}
+
+#w{
     position:absolute;
     top:0; 
     left:0;
@@ -155,13 +141,12 @@ position: relative;
     padding: 10px;
 }
 
-#precip-text
-{
+#precip-text{
     font-weight: 500;
      color: rgb(255 255 255 / 70%);
 }
 
-#topend{
+.top-end{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -171,8 +156,7 @@ position: relative;
     display:flex;
 }
 
-#time-text
-{
+#time-text{
    color:rgb(231 231 130);
     display:flex;
      justify-content: flex-end;
@@ -181,20 +165,19 @@ position: relative;
         font-size: 2vw;
 }
 
-#time-img
-{  display: flex;
+#time-img{  
+    display: flex;
      align-items: center; 
      padding: 2px;
       width:6vw;
        height: 8vh; 
 }
 
-#date-text
-{
+#date-text{
     font-size: 2vw;
 }
 
-#topimg{
+#top-img{
    height: 15vh;
    width: 10vw;
    padding: 0;
@@ -209,25 +192,17 @@ position: relative;
     height: 4vh;
 }
 
-@keyframes animtopimg
-{
-    from {left: -50px;}
-    to {left: 1px;}
-}
-
-#y,#x,#z,#w
-{
+#y,#x,#z,#w{
     font-size: 1.25vw;
 }
 
-
-#topimg1{
+.top-img1{
     margin-left: 0;
     justify-self: end;
    align-self: flex-end;
 }
 
-.topscrollitems{
+.topscroll-items {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -236,26 +211,24 @@ position: relative;
     width: 100%;
     color: rgb(255 255 255 / 60%);
     font-size: 1.3vw;
-   }
+}
 
-.topscrollitems:hover
-   { color: rgb(255 255 255);
+.topscroll-items:hover { 
+    color: rgb(255 255 255);
     height: 60%;
-    }
+}
 
-.item-time
-   {
+.item-time{
     height:15%;
     }
 
-.pipe
-   { justify-content: center;
+.pipe{
+     justify-content: center;
     align-items:center ;
     height: 15%;
    }
 
-.scrollicon
-   {
+.scroll-icon{
     height:15%;
    
     }
@@ -264,8 +237,7 @@ position: relative;
     height:15%;
    }
 
-.pipe,.scrollicon,.final-item
-   {
+.pipe,.scroll-icon,.final-item{
     display: flex;
     align-items: center;
     align-content: center;
@@ -275,8 +247,8 @@ position: relative;
 
   
 
-.leftcloud
-{animation-name: animcloudleft ;
+.left-cloud{
+    animation-name: animcloudleft ;
     animation-timing-function: ease-in-out;
     animation-duration: 40s;
     animation-delay: -5;
@@ -287,20 +259,8 @@ position: relative;
        height: 15vw;
 }
 
-@keyframes animcloudleft {
-    from {
-        left: -20vw;
-          opacity: 0.2;
-    }
-    
-    to {
-        left:70vw; 
-        opacity: 0.1;
-    }
- }
-
-.rightcloud
-{animation-name: animcloudright ;
+.right-cloud{
+    animation-name: animcloudright ;
     animation-timing-function: ease-in-out;
     animation-duration: 40s;
     animation-delay: -5;
@@ -330,128 +290,153 @@ position: relative;
     }
 }
 
+@keyframes animtop 
+    {
+        from {top: -50px;}
+        to {top: 1px;}
+    }
+
+@keyframes animtopimg
+    {
+        from {left: -50px;}
+        to {left: 1px;}
+    }
+    
+@keyframes animcloudleft {
+        from {
+            left: -20vw;
+              opacity: 0.2;
+        }
+        
+        to {
+            left:70vw; 
+            opacity: 0.1;
+        }
+     }
+
+
+
+
+
+
+
+
+
+
 @media (width>=700px){
-    .topsegment {
+    .top-segment {
         grid-template-columns:1.7fr 1.4fr 3.1fr;
     }
 
 }
 
-@media (width <= 700px)
-{   .topsegment
-    {  width: 100%;
+@media (width < 700px)
+{   .top-segment{
+      width: 100%;
        height: 90%;
         grid-template: "a b" 1fr
                        "c c" 1fr / 2fr 1.7fr ;
     }
 
-    #topfront
-    {
+    .top-front{
         grid-area: a;
        grid-template: "x y" 2fr 
                             "z z" 1fr / 1fr 1fr;
     
     }
 
-    #topimg1{
+    .top-img1{
         display: grid;
         justify-self: center;
         grid-area:x ;
       }
 
-     #topimg
-     {
+     #top-img{
         width: 17vw;
         height: 17vh;
      }
 
-    #cityselect
-    {  
+    .city-select{  
         grid-area:y;   
     }
 
-    #optionselect
-    {   font-size: 3vw;
+    #option-select{  
+         font-size: 3vw;
         width: 27vw;
     }
 
-    #rightdown
-    {   display: grid;
+    #rightdown {
+        display: grid;
         grid-template-columns: 1fr 1fr;
         grid-area:z;  
     }
 
-     #time
-     {   display: flex; 
+     #time {
+         display: flex; 
         justify-content: space-evenly;
         align-items: end;
      }
 
-     #date
-      {  display: flex; 
+     #date{
+          display: flex; 
         align-items: end;
         justify-content: center;
      }
 
-     #date-text 
-     {
+     #date-text {
         font-size: 2.5vw;
      }
 
-     #time-text
-     {
+     #time-text{
         font-size: 3vw;
      }
 
-     #time-img
-     {
+     #time-img{
         width: 8vw;
         height: 8vw;
         display: flex;
         align-items: start;
      }
 
-       #topmidddle
-    {
+       #topmidddle{
         grid-area: b;
     }
 
-    #topend
-    {
+    .top-end{
       grid-area: c;
     }
 
-.headerimg
-{
+.header-img{
     height: 70vh;
 }
 
-.topscrollitems
-{
+.topscroll-items{
     height: 70%;
     font-size: 2vw;
 }
 
-#y,#x,#z,#w
-{
+#y,#x,#z,#w{
     font-size: 2vw;
 }
 
-
-
-
-
-
-
-
-.leftcloud
-{animation-name: animcloudleft ;
+.left-cloud{
+    animation-name: animcloudleft ;
     animation-timing-function: ease-in-out;
     animation-duration: 30s;
     animation-delay: -5;
     animation-iteration-count:infinite;
     width: 40vw;
     height: 30vh;
+}
+
+.right-cloud{
+    animation-name: animcloudright ;
+    animation-timing-function: ease-in-out;
+    animation-duration: 40s;
+    animation-delay: -5;
+    animation-iteration-count:infinite;
+    width: 50vw;
+    height: 40vh;
 }
 
 @keyframes animcloudleft {
@@ -467,16 +452,6 @@ position: relative;
         opacity: 0.1;
     }
  }
-
-.rightcloud
-{animation-name: animcloudright ;
-    animation-timing-function: ease-in-out;
-    animation-duration: 40s;
-    animation-delay: -5;
-    animation-iteration-count:infinite;
-    width: 50vw;
-    height: 40vh;
-}
 
 @keyframes animcloudright {
     0% { top: 1vh;
