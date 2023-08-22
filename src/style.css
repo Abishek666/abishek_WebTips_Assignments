@@ -58,6 +58,183 @@
     position: relative;
 }
 
+.middle-segment{
+    background-color: black;
+     height: 130vh; 
+    margin-top: -4%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    position: sticky;
+}
+
+.midsegment-top{
+    color: white;
+    display:grid ;
+    grid-template-columns: 3fr 1.5fr;
+    height: 7vh;
+}
+
+
+.top-heading{
+    display: flex;
+    padding: 0 10% 0 55%; 
+    font-size: 1.8vw;
+    color: rgb(255 255 255 / 70%);
+    align-items: center;
+    align-content:center ;
+    font-weight: 5;
+}
+
+.top-icons{
+    padding: 2vh 2vw;
+    display:grid ;
+    grid-template-columns: 1fr 1fr 1fr 2fr 1fr;
+    align-items: end;
+    justify-content: space-evenly;
+}
+
+#sunny-ic{
+    border-bottom: 2px solid rgb(8  196 243);
+    padding:2px;
+}
+
+#display-top{
+    display: flex;
+     align-self: center;
+     color: rgb(255 255 255 / 70%);
+    font-size: 1vw; 
+    margin: 0.5vh;
+}
+
+.select-val{
+    display: flex; 
+    background-color: rgb(255 255 255 / 10%);
+     width: 3vw;
+      align-self:center;
+       justify-content: space-between;
+        padding: 1px; 
+}
+
+#select-icon{
+    display: flex;
+     flex-direction: column;
+}
+
+.arrow-ic{ 
+     width: 1vw;
+    height: 1vh;
+}
+
+.scroll-itemshorz{
+       margin-top: 3vh;
+       box-sizing: border-box;
+       height:40vh;
+       width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+       display: grid;
+       grid-template-columns: 0.5fr 5fr 0.5fr;
+}
+
+.left-arrow,.right-arrow{
+       display: flex;
+       align-items: center;
+        justify-content: center;
+        justify-items: center;
+        justify-self: center;
+       height: 100%;
+       width: 3vw;
+       align-content: center;
+}
+
+.left-arr{
+    width: 8vw; 
+    height: 8vh;
+}
+   
+#leftarrow{
+       position: relative;
+       animation: scrollitemsanimarrowleft 3s 1;
+       animation-timing-function: ease;
+}
+   
+#rightarrow{
+         position: relative;
+         animation: scrollitemsanimarrowright 3s 1;
+         animation-timing-function: ease;
+}
+
+.items-container{
+       display: flex;
+       justify-content: space-between;
+       width: 100%;
+       overflow-x: auto;
+       white-space: nowrap;
+}
+
+::-webkit-scrollbar{
+       width: 0;
+       height: 0;
+       background: transparent;
+   }
+
+ .items-scroll{
+       background: url("/Assets/HTML&CSS/Icons_for_cities/troll.svg"), rgba(255 255 255 / 5%) ;
+       shape-image-threshold: initial;
+       bottom: 0;
+       right: 0;
+       background-size:cover;
+       background-repeat: no-repeat;
+       width:20vw;
+       height: 35vh;
+       display: grid;
+       min-width:200px;
+       color: aliceblue;
+       grid-template-columns:1fr 1fr ;
+       position: relative;
+       animation: scrollitemsanim 5s 1;
+       animation-timing-function: ease;
+       flex-shrink: 0;
+       margin-right: 20px ;
+   }
+   
+   
+.item3,.item4, .item1,.item2,.item5{
+       position: relative;
+       animation: scrollitemsanimright 3s 1;
+       animation-timing-function: ease;
+   }
+   
+   
+.items-scroll:hover{ 
+     box-shadow: 4px 4px 10px rgba(173 189 196 / 60%);
+       width:21vw;
+       height: 36vh;
+   
+   }
+
+.items-leftpart{
+        height: 80%;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+   }
+
+.items-rightpart{
+               padding: 5px;
+           }
+        
+.scrollitem-humidinfo,.scrollitem-precipinfo,.items-rightpart{
+               display: flex;
+   }
+
+.sunny-icon{
+               height: 3vh;
+               width: 3vw;
+}
+
+
 #y{
     position:absolute; 
      bottom:0;
@@ -163,6 +340,10 @@ position: relative;
     display:flex;
 }
 
+small{
+    font-size: 1.7vw;
+}
+
 #time-text{
    color:rgb(231 231 130);
     display:flex;
@@ -229,16 +410,15 @@ position: relative;
     height:15%;
     }
 
-.pipe{
-     justify-content: center;
+.pipe{ 
+    justify-content: center;
     align-items:center ;
     height: 15%;
    }
 
 .scroll-icon{
     height:15%;
-   
-    }
+   }
 
 .num{
     height:15%;
@@ -319,7 +499,34 @@ position: relative;
             left:70vw; 
             opacity: 0.1;
         }
-     }
+}
+
+@keyframes scrollitemsanimarrowleft 
+{
+    from {left: -100px;}
+    to {left: 1px;}
+   
+  }
+
+  @keyframes scrollitemsanimarrowright
+  {
+     from {right: -100px;}
+     to {right: 1px;}
+    
+   }
+
+   @keyframes scrollitemsanimleft {
+    from {left: -100px;}
+    to {left: 1px;}
+   
+  }
+
+  @keyframes scrollitemsanimright {
+    from {right: -100px;}
+    to {right: 1px;}
+   
+  }
+ 
 
 
 
