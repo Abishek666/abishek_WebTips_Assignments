@@ -19,7 +19,7 @@
     position: relative;
 }
 
-#option-select{
+.option-select{
     position: absolute; 
     bottom: 0;
      width: 17vw;
@@ -367,7 +367,7 @@ position: relative;
         grid-area:y;   
     }
 
-    #option-select{  
+    .option-select{  
          font-size: 3vw;
         width: 27vw;
     }

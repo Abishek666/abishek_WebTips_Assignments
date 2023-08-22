@@ -19,10 +19,12 @@
                         <img id="top-img" src="../Assets/HTML&CSS/Icons_for_cities/maseru.svg" alt="x">
                     </div>
                     <div class="city-select">
-                        <select id="option-select">
-                            <option>New Delhi</option>
-                            <option>New abi</option>
-                        </select>
+                        <input value="New Delhi" list="data" class="option-select" temp="" onfocus="this.temp=this.value; this.value='';" onmouseleave="this.value=this.temp;">
+                        <datalist class="option-select" id="data" open="open">
+                            <option value="New Delhi"> </option>
+                            <option value="New York"> </option>
+                            <option value="Los Angels"> </option>
+                        </datalist>
                     </div>
                     <div>
                     </div>
@@ -152,6 +154,5 @@
                 </div>
             </div>
         </div>
-
     </body>
 </html>
