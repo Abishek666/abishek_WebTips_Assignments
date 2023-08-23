@@ -546,7 +546,7 @@ small{
          left:90vw;
         opacity: -1;
     }
-    
+
 }
 
 
@@ -789,6 +789,85 @@ small{
     animation-iteration-count:infinite;
     width: 50vw;
     height: 40vh;
+}
+
+.lightning{
+    width: 30vw; 
+    opacity: 0;
+    height: 50vh;
+}
+
+@keyframes animlightningleft {
+    0% {
+        opacity: -1;
+        left: -20vw;
+        width: 40vw;
+        height: 70vh;
+    }
+    
+    30% {
+        opacity: -1;
+        top:5vh;
+        left:20vw;
+        width: 40vw;
+        height: 70vh;
+    }
+
+    32%{
+       left:20vw;
+        top:5vh;
+        opacity: 0.2;
+        width: 40vw;
+        height: 70vh;
+    }
+
+    34%{
+        left:20vw;
+        top:5vh;
+        opacity:-1;
+        width: 35vw;
+        height: 50vh;
+     }
+
+    69%{
+        left:60vw;
+        top:0.1vh;
+        opacity:-1
+    }
+
+    70%{
+      left:60vw;
+        opacity: 0.1;
+    }
+
+    72%{    
+        left:60vw;
+        opacity: -1;
+    }
+
+    80%{
+        left:65vw;
+        top:-10vh;
+        opacity:-1;
+        width: 40vw;
+        height: 60vh;
+    }
+
+    82%{
+        left:65vw;
+        opacity: 0.2;
+    }
+
+    83%{
+        left:65vw;
+        opacity: -1;
+    }
+
+    100%{   
+         left:90vw;
+        opacity: -1;
+    }
+
 }
 
 @keyframes animcloudleft {
