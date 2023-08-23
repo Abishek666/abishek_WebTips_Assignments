@@ -19,7 +19,7 @@
                         <img id="top-img" src="../Assets/HTML&CSS/Icons_for_cities/maseru.svg" alt="x">
                     </div>
                     <div class="city-select">
-                        <input value="New Delhi" list="data" class="option-select" temp="" onfocus="this.temp=this.value; this.value='';" onmouseleave="this.value=this.temp;">
+                        <input value="New Delhi" list="data" class="option-select" temp="" onfocus="this.temp=this.value; this.value='';">
                         <datalist class="option-select" id="data" open="open">
                             <option value="New Delhi"> </option>
                             <option value="New York"> </option>
@@ -162,17 +162,7 @@
                     <img src ="/Assets/HTML&CSS/Weather_Icons/snowflakeIcon.svg" width="30vw" height="30vh" alt="snowflakeicon">
                     <img src ="/Assets/HTML&CSS/Weather_Icons/rainyIcon.svg" width="30vw" height="30vh" alt="rainyicon">
                     <h5 id="display-top">Display Top</h5>
-                    <div class="select-val">
-                        <div>
-                            1
-                        </div>
-                        <div id="select-icon">
-                            <img class="arrow-ic" src="/Assets/HTML&CSS/arrows/icons8-up-arrow-64.png" alt="uparrow">
-                            <img class="arrow-ic" src="/Assets/HTML&CSS/arrows/icons8-sort-down-64.png" alt="downarrow">
-
-                        </div>
-                    </div>
-
+                    <input id="select-icon" type="number" value="3" placeholder="counter" min="3" max="10">
                 </div>
             </div>
             <div class="scroll-itemshorz">
@@ -285,7 +275,7 @@
                     </div>
                 </div>
                 <div class="right-arrow">
-                    <img alt="rightarrow" src="/Assets/HTML&CSS/arrows/icons8-next-page-50.png">
+                    <img class="right-arr" alt="rightarrow" src="/Assets/HTML&CSS/arrows/icons8-next-page-50.png">
                 </div>
 
             </div>

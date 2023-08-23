@@ -102,23 +102,27 @@
     display: flex;
      align-self: center;
      color: rgb(255 255 255 / 70%);
-    font-size: 1vw; 
+    font-size: clamp(1vw ,1.1vw, 2vw); 
     margin: 0.5vh;
 }
 
-.select-val{
+#select-icon{
     display: flex; 
-    background-color: rgb(255 255 255 / 10%);
-     width: 3vw;
-      align-self:center;
-       justify-content: space-between;
-        padding: 1px; 
+    background-color: rgb(255 255 255 / 15%);
+     width: 30px;
+     height: 13px;
+     color: rgb(255 255 255 );
+    align-self:center;
 }
 
-#select-icon{
-    display: flex;
-     flex-direction: column;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button
+{
+    opacity:1;
+    background-color: rgb(255 255 255 / 50%);
+
 }
+
 
 .arrow-ic{ 
      width: 1vw;
@@ -142,7 +146,7 @@
         justify-content: center;
         justify-items: center;
         justify-self: center;
-       height: 100%;
+       height: 85%;
        width: 3vw;
        align-content: center;
 }
@@ -152,13 +156,13 @@
     height: 8vh;
 }
    
-#leftarrow{
+.left-arrow{
        position: relative;
        animation: scrollitemsanimarrowleft 3s 1;
        animation-timing-function: ease;
 }
    
-#rightarrow{
+.right-arrow{
          position: relative;
          animation: scrollitemsanimarrowright 3s 1;
          animation-timing-function: ease;
@@ -545,7 +549,35 @@ small{
 }
 
 @media (width < 700px)
-{   .top-segment{
+{   .middle-segment{
+        margin-top: -10%;
+    }
+
+    .top-heading{
+        padding: 0;
+         align-items: center;
+        justify-content: center;
+        font-size: 3.5vw;
+    }
+
+    #display-top{
+        font-size: 2vw;
+    }
+
+    .midsegment-top{  
+          grid-row: 1fr 1fr;
+        grid-template-columns: 1fr;
+        height: 15vh;
+    }
+    
+    .top-icons{
+        padding:0 7%;
+         align-items: center;
+         justify-content: center;
+         justify-items: center;
+        }
+
+    .top-segment{
       width: 100%;
        height: 90%;
         grid-template: "a b" 1fr
@@ -553,11 +585,10 @@ small{
     }
 
     .top-front{
-        grid-area: a;
+       grid-area: a;
        grid-template: "x y" 2fr 
                             "z z" 1fr / 1fr 1fr;
-    
-    }
+     }
 
     .top-img1{
         display: grid;
@@ -629,8 +660,17 @@ small{
     font-size: 2vw;
 }
 
+.scroll-itemshorz{
+    grid-template-columns: 1fr 5fr 1fr;
+}
+
 #y,#x,#z,#w{
     font-size: 2vw;
+}
+
+.left-arr,.right-arr{
+    width:40px;
+    height: 40px;
 }
 
 .left-cloud{
@@ -662,7 +702,7 @@ small{
     
     to {
         top: 20vh;
-        left:70vw; 
+        left:55vw; 
         opacity: 0.1;
     }
  }
