@@ -400,7 +400,7 @@ small{
     flex-direction: column;
     align-items: center; 
     height: 40%;
-    width: 100%;
+    width: 9%;
     color: rgb(255 255 255 / 60%);
     font-size: 1.3vw;
 }
@@ -581,24 +581,28 @@ small{
       width: 100%;
        height: 90%;
         grid-template: "a b" 1fr
-                       "c c" 1fr / 2fr 1.7fr ;
+                       "c c" 1fr / 2fr 2fr ;
     }
 
     .top-front{
        grid-area: a;
-       grid-template: "x y" 2fr 
+       grid-template: "x y" 1fr 
                             "z z" 1fr / 1fr 1fr;
      }
 
     .top-img1{
-        display: grid;
         justify-self: center;
         grid-area:x ;
+        
       }
 
      #top-img{
+        display: flex;
         width: 17vw;
         height: 17vh;
+        align-self: flex-end;
+        align-items: end;
+        align-content: end;
      }
 
     .city-select{  
@@ -606,8 +610,9 @@ small{
     }
 
     .option-select{  
-         font-size: 3vw;
-        width: 27vw;
+         font-size: 4vw;
+        width: 30vw;
+        height: 6vh;
     }
 
     #rightdown {
@@ -618,21 +623,26 @@ small{
 
      #time {
          display: flex; 
-        justify-content: space-evenly;
+         justify-content: flex-start;
         align-items: end;
      }
 
      #date{
+        margin-top: 10px;
           display: flex; 
         align-items: end;
-        justify-content: center;
+        justify-content: flex-start;
      }
 
      #date-text {
-        font-size: 2.5vw;
+        font-size: 3vw;
      }
 
      #time-text{
+        font-size: 4vw;
+     }
+
+     small{
         font-size: 3vw;
      }
 
@@ -657,7 +667,7 @@ small{
 
 .topscroll-items{
     height: 70%;
-    font-size: 2vw;
+    font-size: 3vw;
 }
 
 .scroll-itemshorz{
@@ -665,7 +675,7 @@ small{
 }
 
 #y,#x,#z,#w{
-    font-size: 2vw;
+    font-size: 2.3vw;
 }
 
 .left-arr,.right-arr{
