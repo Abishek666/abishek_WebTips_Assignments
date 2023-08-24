@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <div class="header-img">
+        <header class="header-img">
             <img alt="leftcloudimg" class="left-cloud" src="../Assets/HTML&CSS/GeneralImages&Icons/cloud-8121.png">
             <img alt="lightning" class="lightning" src="../Assets/HTML&CSS/lightning/pngwing.com (3).png">
             <img alt="rightcloudimg" class="right-cloud" src="../Assets/HTML&CSS/GeneralImages&Icons/cloud-8121.png">
@@ -44,25 +44,25 @@
                 </div>
                 <div class="top-middle">
                     <div class="celcius">
-                        <div id="y">
-                            <h2 id="temp-c">Temp &deg C</h2>
+                        <div id="cel-info">
+                            <h2 id="temp-c">Temp °C</h2>
                             <h2 id="tempc-val">25C</h2>
                         </div>
                     </div>
                     <div class="farenh">
-                        <div id="x">
-                            <h2 id="temp-f">Temp&nbsp;&deg F </h2>
+                        <div id="farenh-info">
+                            <h2 id="temp-f">Temp °F </h2>
                             <h2 id="tempf-val">78F</h2>
                         </div>
                     </div>
                     <div class="humid">
-                        <div id="z">
+                        <div id="humid-infos">
                             <h2 id="humid-text">Humidity</h2>
                             <h2 id="humid-val">26%</h2>
                         </div>
                     </div>
                     <div class="precip">
-                        <div id="w">
+                        <div id="precip-infos">
                             <h2 id="precip-text">Precipitation</h2>
                             <h2 id="precip-val">0%</h2>
                         </div>
@@ -155,14 +155,14 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="middle-segment">
+        </header>
+        <section class="middle-segment">
             <div class="midsegment-top">
                 <div class="top-heading">Top cities around world</div>
                 <div class="top-icons">
                     <img src ="/Assets/HTML&CSS/Weather_Icons/sunnyIcon.svg" id="sunny-ic" width="35vw" height="35vh" alt="sunnyicon">
-                    <img src ="/Assets/HTML&CSS/Weather_Icons/snowflakeIcon.svg" width="30vw" height="30vh" alt="snowflakeicon">
-                    <img src ="/Assets/HTML&CSS/Weather_Icons/rainyIcon.svg" width="30vw" height="30vh" alt="rainyicon">
+                    <img src ="/Assets/HTML&CSS/Weather_Icons/snowflakeIcon.svg" id="snowflake-ic" width="30vw" height="30vh" alt="snowflakeicon">
+                    <img src ="/Assets/HTML&CSS/Weather_Icons/rainyIcon.svg" id="rainy-ic" width="30vw" height="30vh" alt="rainyicon">
                     <h5 id="display-top">Display Top</h5>
                     <input id="select-icon" type="number" value="3" placeholder="counter" min="3" max="10">
                 </div>
@@ -281,8 +281,7 @@
                 </div>
 
             </div>
-
-        </div>
+        </section>
 
     </body>
 </html>

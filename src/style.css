@@ -15,17 +15,18 @@
     background-position: center center;
     display: flex;
     align-content:flex-end ;
-    height: 50vh;
+    height: auto;
     position: relative;
+    padding-bottom:5%;
 }
 
 .option-select{
     position: absolute; 
     bottom: 0;
-     width: 17vw;
+     width: 200px;
       color: aliceblue;
-       font-size: 2vw; 
-       height: 9vh;
+       font-size: 25px; 
+       height: 45px;
         border: none;
         text-align: center ;
         background-color: rgba(253 253 253 / 11.6%); 
@@ -38,6 +39,7 @@
     height: 80%;
     padding: 1vh ;
     position: relative;
+    width: 100%;
     animation: animtop 2s 1;
     animation-timing-function: ease;
 }
@@ -60,7 +62,7 @@
 
 .middle-segment{
     background-color: black;
-     height: 130vh; 
+     height: auto; 
     margin-top: -4%;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
@@ -72,22 +74,22 @@
     color: white;
     display:grid ;
     grid-template-columns: 3fr 1.5fr;
-    height: 7vh;
+    height: auto;
 }
 
 
 .top-heading{
     display: flex;
     padding: 0 10% 0 55%; 
-    font-size: 1.8vw;
+    font-size: 20px;
     color: rgb(255 255 255 / 70%);
     align-items: center;
-    align-content:center ;
+    align-content:center;
     font-weight: 5;
 }
 
 .top-icons{
-    padding: 2vh 2vw;
+    padding: 7px;
     display:grid ;
     grid-template-columns: 1fr 1fr 1fr 2fr 1fr;
     align-items: end;
@@ -99,12 +101,18 @@
     padding:2px;
 }
 
+#sunny-ic, #snowflake-ic, #rainy-ic:hover{
+    cursor: pointer;
+
+}
+
 #display-top{
     display: flex;
      align-self: center;
      color: rgb(255 255 255 / 70%);
-    font-size: clamp(1vw ,1.1vw, 2vw); 
-    margin: 0.5vh;
+     font-size: 11px;
+    margin: 10px;
+     flex-wrap: nowrap;
 }
 
 #select-icon{
@@ -118,22 +126,14 @@
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button
-{
-    opacity:1;
+{   opacity:1;
     background-color: rgb(255 255 255 / 50%);
-
-}
-
-
-.arrow-ic{ 
-     width: 1vw;
-    height: 1vh;
 }
 
 .scroll-itemshorz{
        margin-top: 3vh;
        box-sizing: border-box;
-       height:40vh;
+       height:auto;
        width: 100%;
         padding-left: 0;
         padding-right: 0;
@@ -147,8 +147,8 @@ input[type="number"]::-webkit-outer-spin-button
         justify-content: center;
         justify-items: center;
         justify-self: center;
-       height: 85%;
-       width: 3vw;
+        height: 85%;
+        width: 3vw;
        align-content: center;
 }
 
@@ -173,15 +173,17 @@ input[type="number"]::-webkit-outer-spin-button
        display: flex;
        justify-content: space-between;
        width: 100%;
+       height: 100%;
        overflow-x: auto;
        white-space: nowrap;
 }
 
-::-webkit-scrollbar{
-       width: 0;
-       height: 0;
-       background: transparent;
-   }
+.items-container::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    background: transparent;
+
+}
 
  .items-scroll{
        background: url("/Assets/HTML&CSS/Icons_for_cities/troll.svg"), rgba(255 255 255 / 5%) ;
@@ -190,8 +192,8 @@ input[type="number"]::-webkit-outer-spin-button
        right: 0;
        background-size:cover;
        background-repeat: no-repeat;
-       width:20vw;
-       height: 35vh;
+       width:250px;
+       height: 250px;
        display: grid;
        min-width:200px;
        color: aliceblue;
@@ -235,12 +237,12 @@ input[type="number"]::-webkit-outer-spin-button
    }
 
 .sunny-icon{
-               height: 3vh;
-               width: 3vw;
+               height: 20px;
+               width: 20px;
 }
 
 
-#y{
+#cel-info{
     position:absolute; 
      bottom:0;
     right:0;
@@ -265,7 +267,7 @@ input[type="number"]::-webkit-outer-spin-button
     position: relative;
 }
 
-#x{
+#farenh-info{
     position:absolute;  
     top:0;
      right:0;
@@ -291,7 +293,7 @@ input[type="number"]::-webkit-outer-spin-button
     
 }
 
-#z{
+#humid-infos{
     position:absolute;
      bottom:0;
       left:0;
@@ -317,7 +319,7 @@ position: relative;
     position: relative;
 }
 
-#w{
+#precip-infos{
     position:absolute;
     top:0; 
     left:0;
@@ -346,7 +348,7 @@ position: relative;
 }
 
 small{
-    font-size: 1.7vw;
+    font-size: 20px;
 }
 
 #time-text{
@@ -355,24 +357,25 @@ small{
      justify-content: flex-end;
       align-items: end;
        justify-items: end;
-        font-size: 2vw;
+        font-size: 1.5em;
 }
 
 #time-img{  
     display: flex;
      align-items: center; 
      padding: 2px;
-      width:6vw;
-       height: 8vh; 
+      width:50px;
+       height: 50px;
+       margin-bottom: -2%; 
 }
 
 #date-text{
-    font-size: 2vw;
+    font-size: 1.5em;
 }
 
 #top-img{
-   height: 15vh;
-   width: 10vw;
+   height: 100px;
+   width: 100px;
    padding: 0;
    position: relative;
    animation: animtopimg 2s 1;
@@ -381,12 +384,12 @@ small{
 }
 
 .topic{
-    width: 4vw;
-    height: 4vh;
+    width: 30px;
+    height: 30px;
 }
 
-#y,#x,#z,#w{
-    font-size: 1.25vw;
+#humid-infos, #precip-infos, #farenh-info, #cel-info{
+    font-size: 1em;
 }
 
 .top-img1{
@@ -403,7 +406,7 @@ small{
     height: 40%;
     width: 9%;
     color: rgb(255 255 255 / 60%);
-    font-size: 1.3vw;
+    font-size: 1em;
 }
 
 .topscroll-items:hover { 
@@ -543,7 +546,7 @@ small{
     }
 
     100%{   
-         left:90vw;
+         left:70vw;
         opacity: -1;
     }
 
@@ -629,15 +632,35 @@ small{
 
 
 
-@media (width>=700px){
+@media (width>=1100px){
     .top-segment {
         grid-template-columns:1.7fr 1.4fr 3.1fr;
     }
+}
+
+@media ( width<1100px)
+{   .top-segment{
+    width: 100%;
+     height: 90%;
+      grid-template: "a b" 1fr
+                     "c c" 1fr / 2fr 2fr ;
+  }
+
+  .top-end{
+    grid-area: c;
+  }
+
+   .top-heading{
+    padding: 0 10% 0 40%;
+    font-size: 1.2em;
+   }
 
 }
 
+
 @media (width < 700px)
-{   .middle-segment{
+{   
+    .middle-segment{
         margin-top: -10%;
     }
 
@@ -645,17 +668,19 @@ small{
         padding: 0;
          align-items: center;
         justify-content: center;
-        font-size: 3.5vw;
+        font-size: 1.3em;
+        padding-bottom: 10px;
     }
 
     #display-top{
-        font-size: 2vw;
+        font-size: 0.8em;
     }
 
     .midsegment-top{  
           grid-row: 1fr 1fr;
         grid-template-columns: 1fr;
-        height: 15vh;
+        height: auto;
+        padding-top: 20px;
     }
     
     .top-icons{
@@ -686,8 +711,8 @@ small{
 
      #top-img{
         display: flex;
-        width: 17vw;
-        height: 17vh;
+        width: 70px;
+        height: 70px;
         align-self: flex-end;
         align-items: end;
         align-content: end;
@@ -698,9 +723,9 @@ small{
     }
 
     .option-select{  
-         font-size: 4vw;
-        width: 30vw;
-        height: 6vh;
+         font-size: 1.2em;
+        width: 130px;
+        height: 40px;
     }
 
     #rightdown {
@@ -720,23 +745,24 @@ small{
           display: flex; 
         align-items: end;
         justify-content: flex-start;
+        font-size: 0.7em;
      }
 
      #date-text {
-        font-size: 3vw;
+        font-size: 1.2em;
      }
 
      #time-text{
-        font-size: 4vw;
+        font-size: 1.2em;
      }
 
      small{
-        font-size: 3vw;
+        font-size: 0.7em;
      }
 
      #time-img{
-        width: 8vw;
-        height: 8vw;
+        width: 50px;
+        height: 50px;
         display: flex;
         align-items: start;
      }
@@ -750,20 +776,22 @@ small{
     }
 
 .header-img{
-    height: 70vh;
+    height: auto;
+    padding-bottom: 10%;
 }
+
 
 .topscroll-items{
     height: 70%;
-    font-size: 3vw;
+    font-size: 0.9em;
 }
 
 .scroll-itemshorz{
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 1fr 5fr 1fr; 
 }
 
-#y,#x,#z,#w{
-    font-size: 2.3vw;
+#humid-infos, #precip-infos, #farenh-info, #cel-info{
+    font-size: 0.9em;
 }
 
 .left-arr,.right-arr{
@@ -816,7 +844,7 @@ small{
     32%{
        left:20vw;
         top:5vh;
-        opacity: 0.2;
+        opacity: 0.8;
         width: 40vw;
         height: 70vh;
     }
@@ -864,7 +892,7 @@ small{
     }
 
     100%{   
-         left:90vw;
+         left:70vw;
         opacity: -1;
     }
 
@@ -885,11 +913,14 @@ small{
  }
 
 @keyframes animcloudright {
-    0% { top: 1vh;
+   0% { 
+        top: 1vh;
         right: 1vw;
-        opacity: 0.1;}
+        opacity: 0.1;
+    }
   
-    50%{right:50vw;
+    50%{
+        right:50vw;
           top:30vh;
           opacity: 0.5;
     }
