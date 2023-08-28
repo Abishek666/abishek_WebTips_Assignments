@@ -19,6 +19,7 @@ time, mark, audio, video {
     box-sizing: border-box;
     font-family: Ubuntu,sans-serif;
     overscroll-behavior: none;
+	
 }
 
 article, aside, details, figcaption, figure, 
@@ -28,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	background-color: rgb(0 0 0);
 }
 
 ol, ul {
