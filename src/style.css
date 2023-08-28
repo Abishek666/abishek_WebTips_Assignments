@@ -3,8 +3,14 @@
     bottom: 0;
 }
 
+
 .celcius{
     position: relative;
+}
+
+.bottom-segment
+{
+    background-color: rgb(0 0 0);
 }
 
 .header-img{
@@ -15,7 +21,6 @@
     background-position: center center;
     display: flex;
     align-content:flex-end ;
-    height: auto;
     position: relative;
     padding-bottom:5%;
 }
@@ -24,7 +29,7 @@
     position: absolute; 
     bottom: 0;
      width: 200px;
-      color: aliceblue;
+      color: rgb(255 255 255);
        font-size: 25px; 
        height: 45px;
         border: none;
@@ -62,7 +67,6 @@
 
 .middle-segment{
     background-color: black;
-     height: auto; 
     margin-top: -4%;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
@@ -75,6 +79,10 @@
     display:grid ;
     grid-template-columns: 3fr 1.5fr;
     height: auto;
+    position: sticky;
+    top:0;
+    background-color: rgb(0 0 0);
+    z-index: 20;
 }
 
 
@@ -133,7 +141,6 @@ input[type="number"]::-webkit-outer-spin-button
 .scroll-itemshorz{
        margin-top: 3vh;
        box-sizing: border-box;
-       height:auto;
        width: 100%;
         padding-left: 0;
         padding-right: 0;
@@ -440,7 +447,85 @@ small{
     justify-items: center;
    }
 
-  
+.bottom-top{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 0.5fr 3fr 1fr 1fr 0.5fr;
+    align-content: end;
+    color: rgb(254 254 252);
+}
+
+.continent-name,.temperature{
+            display: flex;
+            justify-content: end;
+           }
+
+.bottom-gridcontainer{ 
+     margin-top: 30px;
+     box-sizing: border-box;
+    display: grid;
+    grid-template-columns:0.5fr 5fr 0.5fr ;
+    padding-bottom: 100px;
+}
+
+#downarr, #uparr{
+    height: 15px; 
+    width: 15px;
+}
+
+.bottom-itemscontainer{
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-gap: 20px;
+}
+
+.bottom-left{
+    position: relative;
+    animation: mymove1 5s 1;
+    animation-timing-function: ease;
+}
+
+.bottom-right{
+    position: relative;
+    animation: mymove2 5s 1;
+    animation-timing-function: ease;
+  }
+
+.container-elements{
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: column;
+    height: 70px;
+    padding: 5px;
+    background: rgba(255 255 255 / 7%) ;
+    color: white;
+    box-shadow: 5px 5px 10px rgb(95 103 106);
+}
+
+.bottom-humidinfo{
+    display:flex;
+    justify-content: end;
+    align-items: start;
+}
+
+.bottom-temp{   
+    font-size: 1.5em;
+    display:flex;
+    color: rgb(219 219 215);
+    justify-content: end;
+} 
+
+.cont{
+    color: rgb(197 197 115);
+}
+
+.container-elements:hover{   
+    box-shadow: 5px 5px 10px  rgb(197 197 115);
+   transform: scale(1.07);
+}
 
 .left-cloud{
     animation-name: animcloudleft ;
@@ -449,9 +534,9 @@ small{
     animation-delay: -5;
     animation-iteration-count:infinite;
      position: absolute;
-      width: 30vw; 
+      width: 300px;
       opacity: 0.3;
-       height: 15vw;
+       height: 200px;
 }
 
 .right-cloud{
@@ -462,9 +547,9 @@ small{
     animation-iteration-count:infinite;
     position: absolute; 
     right: 0;
-     width: 40vw;
-      opacity: 0.3;
-       height: 20vw;
+    width: 500px;
+    opacity: 0.3;
+    height: 300px;
     }
 
  .lightning{
@@ -473,101 +558,110 @@ small{
         animation-duration: 10s;
         animation-delay: 2s;
         animation-iteration-count:infinite;
-         position: absolute;
-         width: 20vw; 
+        position: absolute;
+        width: 200px; 
         opacity: 0;
-        height: 40vh;
+        height: 400px;
 }
 
 @keyframes animlightningleft {
     0% {
         opacity: -1;
-        left: -20vw;
-        width: 30vw;
-        height: 60vh;
+        left: -20%;
+
     }
     
     30% {
         opacity: -1;
-        top:5vh;
-        left:20vw;
-        width: 30vw;
-        height: 60vh;
+        top:5%;
+        left:20%;
+        width: 300px;
+        height: 500px;
     }
 
     32%{
-       left:20vw;
-        top:5vh;
+       left:20%;
+        top:5%;
         opacity: 0.2;
-        width: 30vw;
-        height: 60vh;
+        width: 400px;
+        height: 500px;
     }
 
     34%{
-        left:20vw;
-        top:5vh;
+        left:20%;
+        top:5%;
         opacity:-1;
-        width: 25vw;
-        height: 40vh;
+        width: 300px;
+        height: 400px;
      }
 
     69%{
-        left:60vw;
-        top:0.1vh;
+        left:60%;
+        top:0.1%;
         opacity:-1
     }
 
     70%{
-      left:60vw;
+      left:60%;
         opacity: 0.1;
     }
 
     72%{    
-        left:60vw;
+        left:60%;
         opacity: -1;
     }
 
     80%{
-        left:65vw;
-        top:-10vh;
+        left:65%;
+        top:-10%;
         opacity:-1;
-        width: 30vw;
-        height: 50vh;
+        width: 450px;
+        height: 550px;
     }
 
     82%{
-        left:65vw;
+        left:65%;
         opacity: 0.2;
     }
 
     83%{
-        left:65vw;
+        left:65%;
         opacity: -1;
     }
 
     100%{   
-         left:70vw;
+         left:65%;
         opacity: -1;
     }
 
 }
 
+@keyframes mymove1{
+    from {left: -100px;}
+    to {left: 1px;}
+}
+
+@keyframes mymove2 {
+    from {right: -100px;}
+    to {right: 1px;}
+}
+
 
 
 @keyframes animcloudright {
-    0% { top: 1vh;
-        right: 1vw;
+    0% { top: 1%;
+        right: 1%;
         opacity: 0.1;}
   
-    50%{right:50vw;
-          top:8vh;
+    50%{right:50%;
+          top:8%;
           opacity: 0.5;
     }
    
     100%
     {
-        right:100vw;
-        top:1vh;
+        right:100%;
+        top:1%;
         opacity: 0.2;
     }
 }
@@ -586,12 +680,12 @@ small{
     
 @keyframes animcloudleft {
         from {
-            left: -20vw;
+            left: -20%;
               opacity: 0.2;
         }
         
         to {
-            left:70vw; 
+            left:70%; 
             opacity: 0.1;
         }
 }
@@ -627,11 +721,6 @@ small{
 
 
 
-
-
-
-
-
 @media (width>=1100px){
     .top-segment {
         grid-template-columns:1.7fr 1.4fr 3.1fr;
@@ -646,6 +735,25 @@ small{
                      "c c" 1fr / 2fr 2fr ;
   }
 
+  .bottom-itemscontainer
+  {
+    grid-template-columns: 1fr 1fr;
+  }
+   
+  .continent-name
+  {
+    font-size: 0.9rem;
+  }
+
+  .temperature{
+    font-size: 0.9rem;
+  }
+
+  .cities-text
+  {font-size: 0.9rem;
+
+  }
+
   .top-end{
     grid-area: c;
   }
@@ -658,13 +766,71 @@ small{
 }
 
 
-@media (width < 700px)
-{   
+@media (width < 750px)
+{  
+     .bottom-itemscontainer{
+         height: 350px;
+       overflow-y:auto ;
+       white-space: nowrap;
+      grid-template-columns: 1fr;
+      grid-gap:20px;
+     }
+
+  .bottom-itemscontainer::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    background: transparent;
+}
+
+    .container-elements{
+      margin-top: 1px;
+      padding: 5px;
+}
+ 
+.container-elements:hover{
+     box-shadow: 5px 5px 10px  rgb(197 197 115);
+      transform: scale(1.003);
+     
+     
+  }
+
+  .bottom-gridcontainer{
+    grid-template-columns: 1fr 5fr 1fr;
+  }
+  
     .middle-segment{
         margin-top: -10%;
     }
+    
+    .bottom-top
+    {    display: grid;
+        grid-template: ". a a ." 1fr
+                              ". b c ." 1fr / 0.5fr 1fr 1fr 0.5fr;
+        grid-gap:15px ;
+       
+    }
 
-    .top-heading{
+    .continent-name{
+       display: flex;
+        justify-content: start;
+        grid-area: b;  
+    }
+
+    .temperature{
+          display: flex;
+        justify-content: end;
+        grid-area: c;  
+    }
+
+    #cities-text{
+          width: 100%;
+        display: flex;
+        justify-content: center;
+        grid-area: a;
+        font-size: 1.2em;
+    }
+
+   .top-heading{
         padding: 0;
          align-items: center;
         justify-content: center;
@@ -679,8 +845,8 @@ small{
     .midsegment-top{  
           grid-row: 1fr 1fr;
         grid-template-columns: 1fr;
-        height: auto;
         padding-top: 20px;
+        padding-bottom: 20px;
     }
     
     .top-icons{
@@ -776,7 +942,6 @@ small{
     }
 
 .header-img{
-    height: auto;
     padding-bottom: 10%;
 }
 
@@ -805,8 +970,8 @@ small{
     animation-duration: 30s;
     animation-delay: -5;
     animation-iteration-count:infinite;
-    width: 40vw;
-    height: 30vh;
+    width: 300px;
+    height: 200px;
 }
 
 .right-cloud{
@@ -815,84 +980,86 @@ small{
     animation-duration: 40s;
     animation-delay: -5;
     animation-iteration-count:infinite;
-    width: 50vw;
-    height: 40vh;
+    width: 400px;
+    height: 300px;
 }
 
 .lightning{
-    width: 30vw; 
+    width: 150px; 
     opacity: 0;
-    height: 50vh;
+    height: 300px;
 }
 
 @keyframes animlightningleft {
     0% {
         opacity: -1;
-        left: -20vw;
-        width: 40vw;
-        height: 70vh;
+        left: -20%;
+        width: 200px;
+        height: 300px;
+    
     }
     
     30% {
         opacity: -1;
-        top:5vh;
-        left:20vw;
-        width: 40vw;
-        height: 70vh;
+        top:5%;
+        left:20%;
+        width: 200px;
+        height: 300px;
     }
 
     32%{
-       left:20vw;
-        top:5vh;
+       left:20%;
+        top:5%;
         opacity: 0.8;
-        width: 40vw;
-        height: 70vh;
+        width: 200px;
+        height: 300px;
     }
 
     34%{
-        left:20vw;
-        top:5vh;
+        left:20%;
+        top:5%;
         opacity:-1;
-        width: 35vw;
-        height: 50vh;
+        width: 200px;
+        height: 300px;
      }
 
     69%{
-        left:60vw;
-        top:0.1vh;
+        left:50%;
+        top:0.1%;
         opacity:-1
     }
 
     70%{
-      left:60vw;
+      left:50%;
         opacity: 0.1;
+        width: 250px;
+        height: 350px;
     }
 
     72%{    
-        left:60vw;
+        left:50%;
         opacity: -1;
     }
 
     80%{
-        left:65vw;
-        top:-10vh;
+        left:55%;
+        top:-10%;
         opacity:-1;
-        width: 40vw;
-        height: 60vh;
+     
     }
 
     82%{
-        left:65vw;
+        left:55%;
         opacity: 0.2;
     }
 
     83%{
-        left:65vw;
+        left:55%;
         opacity: -1;
     }
 
     100%{   
-         left:70vw;
+         left:55%;
         opacity: -1;
     }
 
@@ -900,35 +1067,35 @@ small{
 
 @keyframes animcloudleft {
     from {
-        top: 20vh;
-        left: -20vw;
+        top: 20%;
+        left: -20%;
           opacity: 0.2;
     }
     
     to {
-        top: 20vh;
-        left:55vw; 
+        top: 20%;
+        left:5%; 
         opacity: 0.1;
     }
  }
 
 @keyframes animcloudright {
    0% { 
-        top: 1vh;
-        right: 1vw;
+        top: 1%;
+        right: 1%;
         opacity: 0.1;
     }
   
     50%{
-        right:50vw;
-          top:30vh;
+        right:50%;
+          top:30%;
           opacity: 0.5;
     }
    
     100%
     {
-        right:100vw;
-        top:1vh;
+        right:100%;
+        top:1%;
         opacity: 0.2;
     }
 }
