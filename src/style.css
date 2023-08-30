@@ -358,8 +358,16 @@ small{
     font-size: 20px;
 }
 
-#time-text{
+.time-text{
    color:rgb(231 231 130);
+    display:flex;
+     justify-content: flex-end;
+      align-items: end;
+       justify-items: end;
+        font-size: 1.5em;
+}
+.pm-state{
+    color: rgb(43 134 187);
     display:flex;
      justify-content: flex-end;
       align-items: end;

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
         <link rel="stylesheet" type="text/css" href="reset.css">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="./index.js"></script>
     </head>
     <body>
         <header class="header-img">
@@ -18,21 +19,19 @@
             <div class="top-segment">
                 <div class="top-front">
                     <div class="top-img1">
-                        <img id="top-img" src="../Assets/HTML&CSS/Icons_for_cities/maseru.svg" alt="x">
+                        <img id="top-img" src="../Assets/HTML&CSS/Icons_for_cities/newyork.svg" alt="x">
                     </div>
                     <div class="city-select">
-                        <input value="New Delhi" list="data" class="option-select" temp="" onfocus="this.temp=this.value; this.value='';">
-                        <datalist class="option-select" id="data" open="open">
-                            <option value="New Delhi"> </option>
-                            <option value="New York"> </option>
-                            <option value="Los Angels"> </option>
+                        <input value="newyork" list="data" class="option-select" temp="" onfocus="this.temp=this.value; this.value='';" onchange="changeValues()">
+                        <datalist value="newyork" class="option-select datalist-options" id="data" open="open">
+                          
                         </datalist>
                     </div>
                     <div>
                     </div>
                     <div class="right-down">
                         <div id="time" class="a">
-                            <h6 id="time-text">
+                            <h6 class="time-text">
                                 10:10: <small>44</small>
                             </h6>
                             <img alt="amimg" id="time-img" src="../Assets/HTML&CSS/GeneralImages&Icons/amState.svg">
