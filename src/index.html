@@ -22,9 +22,9 @@
                         <img id="top-img" src="../Assets/HTML&CSS/Icons_for_cities/newyork.svg" alt="x">
                     </div>
                     <div class="city-select">
-                        <input value="newyork" list="data" class="option-select" temp="" onfocus="this.temp=this.value; this.value='';" onchange="changeValues()">
+                        <input placeholder="select a city" value="newyork" list="data" class="option-select" temp="" onfocus="this.temp=this.value; this.value='';" onchange="changeValues()">
                         <datalist value="newyork" class="option-select datalist-options" id="data" open="open">
-                          
+
                         </datalist>
                     </div>
                     <div>
@@ -32,12 +32,12 @@
                     <div class="right-down">
                         <div id="time" class="a">
                             <h6 class="time-text">
-                                10:10: <small>44</small>
+
                             </h6>
                             <img alt="amimg" id="time-img" src="../Assets/HTML&CSS/GeneralImages&Icons/amState.svg">
                         </div>
                         <div id="date" class="a">
-                            <h6 id="date-text">01-MAR-2022</h6>
+                            <h6 id="date-text"></h6>
                         </div>
                     </div>
                 </div>
@@ -45,113 +45,29 @@
                     <div class="celcius">
                         <div id="cel-info">
                             <h2 id="temp-c">Temp °C</h2>
-                            <h2 id="tempc-val">25C</h2>
+                            <h2 id="tempc-val"></h2>
                         </div>
                     </div>
                     <div class="farenh">
                         <div id="farenh-info">
                             <h2 id="temp-f">Temp °F </h2>
-                            <h2 id="tempf-val">78F</h2>
+                            <h2 id="tempf-val"></h2>
                         </div>
                     </div>
                     <div class="humid">
                         <div id="humid-infos">
                             <h2 id="humid-text">Humidity</h2>
-                            <h2 id="humid-val">26%</h2>
+                            <h2 id="humid-val"></h2>
                         </div>
                     </div>
                     <div class="precip">
                         <div id="precip-infos">
                             <h2 id="precip-text">Precipitation</h2>
-                            <h2 id="precip-val">0%</h2>
+                            <h2 id="precip-val"></h2>
                         </div>
                     </div>
-
                 </div>
                 <div class="top-end">
-                    <div class="topscroll-items">
-                        <div class="item-time">now</div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon">
-                            <img alt="weathericon" class="topic" src="../Assets/HTML&CSS/Weather_Icons/cloudyIcon.svg">
-                        </div>
-                        <div>6</div>
-                    </div>
-
-                    <div class="topscroll-items">
-                        <div class="item-time"></div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon"></div>
-                        <div class="num"></div>
-                    </div>
-                    <div class="topscroll-items">
-                        <div class="item-time">11 AM</div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon">
-                            <img alt="weathericon" class="topic" src="../Assets/HTML&CSS/Weather_Icons/rainyIcon.svg">
-                        </div>
-                        <div class="num">7</div>
-                    </div>
-
-                    <div class="topscroll-items">
-                        <div class="item-time"></div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon"></div>
-                        <div class="num"></div>
-                    </div>
-                    <div class="topscroll-items">
-                        <div class="item-time">12 PM</div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon">
-                            <img alt="weathericon" class="topic" src="../Assets/HTML&CSS/Weather_Icons/windyIcon.svg">
-                        </div>
-                        <div class="num">7</div>
-                    </div>
-
-                    <div class="topscroll-items">
-                        <div class="item-time"></div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon"></div>
-                        <div class="num"></div>
-                    </div>
-                    <div class="topscroll-items">
-                        <div class="item-time">1 PM</div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon">
-                            <img alt="weathericon" class="topic" src="../Assets/HTML&CSS/Weather_Icons/rainyIcon.svg">
-                        </div>
-                        <div class="num">8</div>
-                    </div>
-
-                    <div class="topscroll-items">
-                        <div class="item-time"></div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon"></div>
-                        <div class="num"></div>
-                    </div>
-                    <div class="topscroll-items">
-                        <div class="item-time">2 PM</div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon">
-                            <img alt="weathericon" class="topic" src="../Assets/HTML&CSS/Weather_Icons/windyIcon.svg">
-                        </div>
-                        <div class="num">8</div>
-                    </div>
-
-                    <div class="topscroll-items">
-                        <div class="item-time"></div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon"></div>
-                        <div class="num"></div>
-                    </div>
-                    <div class="topscroll-items">
-                        <div class="item-time">3 PM</div>
-                        <div class="pipe">|</div>
-                        <div class="scroll-icon">
-                            <img alt="weathericon" class="topic" src="../Assets/HTML&CSS/Weather_Icons/rainyIcon.svg">
-                        </div>
-                        <div class="num">6</div>
-                    </div>
                 </div>
             </div>
         </header>
@@ -184,7 +100,6 @@
                                 <img alt="precipicon" src="/Assets/HTML&CSS/Weather_Icons/precipitationIcon.svg">
                                 <div>10%</div>
                             </div>
-
                         </div>
                         <div class="items-rightpart">
                             <img alt="sunnyicon" src="/Assets/HTML&CSS/Weather_Icons/sunnyIcon.svg" class="sunny-icon">
@@ -210,7 +125,6 @@
                             <img alt="sunnyicon" src="/Assets/HTML&CSS/Weather_Icons/sunnyIcon.svg" class="sunny-icon">
                             <div>25 &deg C</div>
                         </div>
-
                     </div>
                     <div class="items-scroll item3">
                         <div class="items-leftpart">
@@ -245,13 +159,11 @@
                                 <img alt="precipicon" src="/Assets/HTML&CSS/Weather_Icons/precipitationIcon.svg">
                                 <div>10%</div>
                             </div>
-
                         </div>
                         <div class="items-rightpart">
                             <img alt="sunnyicon" src="/Assets/HTML&CSS/Weather_Icons/sunnyIcon.svg" class="sunny-icon">
                             <div>25 &deg C</div>
                         </div>
-
                     </div>
                     <div class="items-scroll item5">
                         <div class="items-leftpart">
@@ -266,13 +178,11 @@
                                 <img alt="precipicon" src="/Assets/HTML&CSS/Weather_Icons/precipitationIcon.svg">
                                 <div>10%</div>
                             </div>
-
                         </div>
                         <div class="items-rightpart">
                             <img alt="sunnyicon" src="/Assets/HTML&CSS/Weather_Icons/sunnyIcon.svg" class="sunny-icon">
                             <div>25 &deg C</div>
                         </div>
-
                     </div>
                 </div>
                 <div class="right-arrow">
@@ -455,8 +365,6 @@
                 </div>
                 <div></div>
             </div>
-
         </section>
-
     </body>
 </html>

@@ -366,6 +366,7 @@ small{
        justify-items: end;
         font-size: 1.5em;
 }
+
 .pm-state{
     color: rgb(43 134 187);
     display:flex;
@@ -418,7 +419,7 @@ small{
     justify-content: space-between;
     flex-direction: column;
     align-items: center; 
-    height: 40%;
+    height: 55%;
     width: 9%;
     color: rgb(255 255 255 / 60%);
     font-size: 1em;
@@ -426,7 +427,7 @@ small{
 
 .topscroll-items:hover { 
     color: rgb(255 255 255);
-    height: 60%;
+    transform: scale(1.1);
 }
 
 .item-time{
@@ -955,7 +956,7 @@ small{
 
 
 .topscroll-items{
-    height: 70%;
+    height: 80%;
     font-size: 0.9em;
 }
 
