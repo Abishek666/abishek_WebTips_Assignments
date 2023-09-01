@@ -5,10 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Weather project</title>
+        <link rel="icon" type="image/x-icon" href="../Assets/HTML&CSS/Weather_Icons/cloudyIcon.svg">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
         <link rel="stylesheet" type="text/css" href="reset.css">
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="./index.js"></script>
+        <script src="./index.js" type="module"></script>
     </head>
     <body>
         <header class="header-img">
@@ -22,7 +23,7 @@
                         <img id="top-img" src="../Assets/HTML&CSS/Icons_for_cities/newyork.svg" alt="x">
                     </div>
                     <div class="city-select">
-                        <input placeholder="select a city" value="newyork" list="data" class="option-select" temp="" onfocus="this.temp=this.value; this.value='';" onchange="changeValues()">
+                        <input placeholder="select a city" value="newyork" list="data" class="option-select city" temp="" onfocus="this.temp=this.value; this.value='';"  >
                         <datalist value="newyork" class="option-select datalist-options" id="data" open="open">
 
                         </datalist>
@@ -184,7 +185,7 @@
                             <div>25 &deg C</div>
                         </div>
                     </div>
-                </div>
+                 </div>
                 <div class="right-arrow">
                     <img class="right-arr" alt="rightarrow" src="/Assets/HTML&CSS/arrows/icons8-next-page-50.png">
                 </div>
