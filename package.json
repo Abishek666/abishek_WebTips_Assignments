@@ -13,6 +13,7 @@
     "lintJS": "eslint \"src/**/*.js\"",
     "lintHTML": "eslint \"src/**/*.html\"",
     "lintCSS": "stylelint \"**/*.css\""
+    
   },
   "keywords": [],
   "author": "",
