@@ -1,8 +1,8 @@
 import { months } from './data.js';
 
 (async function () {
-  const allCityDetails = await fetchdata()
-  loadOptions(allCityDetails)
+  const allCityDetails = await fetchCityDetails()
+  loadSelectOptions(allCityDetails)
   changeHeaderValues()
   document.querySelector('.option-select.city').addEventListener('change', changeHeaderValues)
   /**
@@ -52,30 +52,30 @@ import { months } from './data.js';
     topContainer.innerHTML = ''
     for (let i = 0; i < 5; i += 1) {
       if (i === 0) {
-        const element = document.createElement('div')
-        element.classList.add('topscroll-items')
-        element.innerHTML = getCityTimeHtmlTemplate('Now', currentCity.temperature, 0)
-        topContainer.appendChild(element)
+        const forecastTimeElement = document.createElement('div')
+        forecastTimeElement.classList.add('topscroll-items')
+        forecastTimeElement.innerHTML = getCityTimeHtmlTemplate('Now', currentCity.temperature, 0)
+        topContainer.appendChild(forecastTimeElement)
         changeSelectedCityIcon(currentCity.temperature, i)
       } else {
-        const element = document.createElement('div')
-        element.classList.add('topscroll-items')
+        const forecastTimeElement = document.createElement('div')
+        forecastTimeElement.classList.add('topscroll-items')
         if (parseInt(hour) === 11) hour = 12
         else hour = (parseInt(hour) + 1) % 12
         if (hour === 1) {
           if (state === 'PM') state = 'AM'
           else state = 'PM'
         }
-        element.innerHTML = getCityTimeHtmlTemplate(hour.toString() + state, currentCity.nextFiveHrs[i - 1], 0)
-        topContainer.appendChild(element)
+        forecastTimeElement.innerHTML = getCityTimeHtmlTemplate(hour.toString() + state, currentCity.nextFiveHrs[i - 1], 0)
+        topContainer.appendChild(forecastTimeElement)
         changeSelectedCityIcon(currentCity.nextFiveHrs[i - 1], i)
       }
 
       if (i < 4) {
-        const element = document.createElement('div')
-        element.classList.add('topscroll-items')
-        element.innerHTML = getCityTimeHtmlTemplate('', '', 1)
-        topContainer.appendChild(element)
+        const forecastTimeElement = document.createElement('div')
+        forecastTimeElement.classList.add('topscroll-items')
+        forecastTimeElement.innerHTML = getCityTimeHtmlTemplate('', '', 1)
+        topContainer.appendChild(forecastTimeElement)
       }
     }
   }
@@ -85,22 +85,23 @@ import { months } from './data.js';
    */
   function changeHeaderValues () {
     const selectedCity = document.getElementsByClassName('option-select')[0].value.toLowerCase()
-    document.getElementById('top-img').src = '../Assets/HTML&CSS/Icons_for_cities/' + selectedCity + '.svg'
     const cityDetails = allCityDetails[selectedCity]
+    const time = document.getElementsByClassName('time-text')[0]
+    const date = document.getElementById('date-text')
+    const timeState = document.getElementById('time-img')
+    const timeJson = cityDetails.dateAndTime
+    const separatedArray = timeJson.split(', ')
+    const splitDate = separatedArray[0].split('/')
+    document.getElementById('top-img').src = '../Assets/HTML&CSS/Icons_for_cities/' + selectedCity + '.svg'
     document.getElementById('tempc-val').innerHTML = cityDetails.temperature
     document.getElementById('tempf-val').innerHTML = ((parseInt(cityDetails.temperature) * 9 / 5) + 32).toFixed(2) + 'F'
     document.getElementById('humid-val').innerHTML = cityDetails.humidity
     document.getElementById('precip-val').innerHTML = cityDetails.precipitation
-    const time = document.getElementsByClassName('time-text')[0]
-    const date = document.getElementById('date-text')
-    const timeJson = cityDetails.dateAndTime
-    const separatedArray = timeJson.split(', ')
-    const splitDate = separatedArray[0].split('/')
     date.innerHTML = splitDate[1] + '-' + months[parseInt(splitDate[0]) - 1] + '-' + splitDate[2]
     const splitTime = separatedArray[1].split(':')
     const splitSecAndMeridiem = splitTime[2].split(' ')
     time.innerHTML = splitTime[0] + ':' + splitTime[1] + ':' + '<small>' + splitSecAndMeridiem[0] + '<small>'
-    const timeState = document.getElementById('time-img')
+
     if (splitSecAndMeridiem[1] === 'PM') {
       timeState.src = '../Assets/HTML&CSS/GeneralImages&Icons/pmState.svg'
       time.classList.add('pm-state')
@@ -116,7 +117,7 @@ import { months } from './data.js';
    * This function will load the the city names in option of datalist
    * @param {object} data all city data JSON file
    */
-  function loadOptions (data) {
+  function loadSelectOptions (data) {
     data = Object.values(data)
     const dataList = document.querySelector('.datalist-options')
     data.map((s) => {
@@ -131,7 +132,7 @@ import { months } from './data.js';
    * This function will fetch data from JSON file using fetch api
    * @returns {object} cityDetails
    */
-  async function fetchdata () {
+  async function fetchCityDetails () {
     const cityDetails = await fetch('../Assets/HTML&CSS/files/data.json')
       .then((res) => { return res.json() })
       .then((data) => { return data })
