@@ -1,10 +1,167 @@
 import { months } from './data.js';
 
 (async function () {
-  const allCityDetails = await fetchCityDetails()
+  let allCityDetails = await fetchCityDetails()
+  const icons = document.querySelectorAll('.mid-ic')
+  const leftArrow = document.getElementById('left-scroll-arrow')
+  const rightArrow = document.getElementById('right-scroll-arrow')
+  let middleSegmentCards = allCityDetails
+  let selectedIcon = ' '
+  let cardCount = document.getElementById('select-icon').value
+  allCityDetails = sortCityOptions(allCityDetails)
   loadSelectOptions(allCityDetails)
   changeHeaderValues()
   document.querySelector('.option-select.city').addEventListener('change', changeHeaderValues)
+  changeMiddleSegment(allCityDetails)
+  getScrollWidth()
+  icons.forEach((ic) => ic.addEventListener('click', selectIcon))
+  leftArrow.addEventListener('click', () => { scrollItems('left') })
+  rightArrow.addEventListener('click', () => { scrollItems('right') })
+  document.getElementById('select-icon').addEventListener('change', getCardCount)
+
+  /**
+   *  This function will get the scrollwidth and clientwidth of the itemscontainer to display the arrow
+   */
+  function getScrollWidth () {
+    const middleContainerWidth = document.getElementsByClassName('items-container')[0].clientWidth
+    const scrollContainerWidth = document.getElementsByClassName('items-container')[0].scrollWidth
+    if (middleContainerWidth >= scrollContainerWidth) {
+      document.getElementsByClassName('left-arr')[0].style.display = 'none'
+      document.getElementsByClassName('right-arr')[0].style.display = 'none'
+      document.getElementsByClassName('items-container')[0].style.justifyContent = 'space-around'
+    } else {
+      document.getElementsByClassName('left-arr')[0].style.display = 'block'
+      document.getElementsByClassName('right-arr')[0].style.display = 'block'
+    }
+  }
+
+  /**
+   * This function will get the value from spinner  and update the card numbers
+   */
+  function getCardCount () {
+    cardCount = document.getElementById('select-icon').value
+    changeMiddleSegment(middleSegmentCards)
+    getScrollWidth()
+  }
+
+  /**
+   * This function will scroll the container when arrow is clicked
+   * @param {string} arrow It is used to identify the arrow
+   */
+  function scrollItems (arrow) {
+    const cardWidth = document.querySelector('.items-scroll').getBoundingClientRect().width
+    const scrollContainer = document.querySelector('.items-container')
+    if (arrow === 'right') scrollContainer.scrollLeft += cardWidth
+    else scrollContainer.scrollLeft -= cardWidth
+  }
+
+  /**
+   *  This function sorts the objects
+   * @param {object} data  all city details
+   *  @returns {object} returns the sorted city objects
+   */
+  function sortCityOptions (data) {
+    const sortedKeys = Object.keys(data).sort()
+    const result = { }
+    sortedKeys.forEach((key) => { result[key] = data[key] })
+    console.log(result)
+    return result
+  }
+
+  /**
+   *   This function selects the icon and add style. It calls the filter function
+   */
+  function selectIcon () {
+    if (selectedIcon !== ' ') { document.getElementById(selectedIcon).classList.remove('ic-click') }
+    selectedIcon = this.id
+    document.getElementById(this.id).classList.add('ic-click')
+    filterMiddleSegment(this.id)
+  }
+
+  /**
+   *  This function will filter the cities based on selected icons
+   * @param {string} iconId icon id for identification
+   */
+  function filterMiddleSegment (iconId) {
+    let filterObject = {}
+    document.getElementsByClassName('items-container')[0].innerHTML = ' '
+    Object.values(allCityDetails).map((data) => {
+      const temp = parseInt(data.temperature.slice(0, 2))
+      const humid = parseInt(data.humidity.slice(0, -1))
+      const precip = parseInt(data.precipitation.slice(0, -1))
+      const key = data.cityName.toLowerCase()
+      if (iconId === 'sunny-ic' && temp > 29 && humid < 50 && precip >= 50) {
+        filterObject[key] = allCityDetails[key]
+      } else if (iconId === 'snowflake-ic' && (temp >= 20 && temp <= 28) && humid > 50 && precip < 50) {
+        filterObject[key] = allCityDetails[key]
+      } else if (iconId === 'rainy-ic' && (temp < 20) && humid >= 50) {
+        filterObject[key] = allCityDetails[key]
+      }
+      return 0
+    }
+
+    )
+    if (iconId === 'sunny-ic')filterObject = compareFunction(filterObject, 'temperature')
+    else if (iconId === 'snowflake-ic')filterObject = compareFunction(filterObject, 'precipitation')
+    else filterObject = compareFunction(filterObject, 'humidity')
+    middleSegmentCards = filterObject
+    changeMiddleSegment(filterObject)
+    getScrollWidth()
+  }
+
+  const compareFunction = (obj, key) => {
+    return Object.values(obj).sort((a, b) => { return parseInt(b[key]) - parseInt(a[key]) })
+  }
+
+  /**
+   *    This function generate the card in container iteratively
+   * @param {object}cities all city details
+   */
+  function changeMiddleSegment (cities) {
+    const middleContainer = document.getElementsByClassName('items-container')[0]
+    middleContainer.innerHTML = ''
+    const data = Object.values(cities)
+    let i = 0
+    data.slice(0, cardCount).map((value) => {
+      const card = document.createElement('div')
+      card.classList.add('items-scroll')
+      // console.log(value.cityName.toLowerCase())
+      card.innerHTML = changeCardDetailsTemplate(value)
+      middleContainer.appendChild(card)
+      document.getElementsByClassName('items-scroll')[i].style.backgroundImage = "url('/Assets/HTML&CSS/Icons_for_cities/" + value.cityName.toLowerCase() + ".svg')"
+      i = i + 1
+      return 0
+    })
+    getScrollWidth()
+  }
+
+  /**
+   * This function is the template for card
+   * @param {object} data individual city details
+   * @returns {object} card template
+   */
+  function changeCardDetailsTemplate (data) {
+    const time = data.dateAndTime.split(', ')[0].split('/')
+    return (`<div class="items-leftpart">
+  <div class="scroll-itemcity">${data.cityName}</div>
+  <div class="scroll-itemtime">${data.dateAndTime.split(', ')[1]}</div>
+  <div class="scroll-itemdate">${time[0] + '-' + time[1] + '-' + time[2]}</div>
+  <div class="scrollitem-humidinfo">
+      <img alt="humidityicon" src="/Assets/HTML&CSS/Weather_Icons/humidityIcon.svg">
+      <div>${data.humidity}</div>
+  </div>
+  <div class="scrollitem-precipinfo">
+      <img alt="precipicon" src="/Assets/HTML&CSS/Weather_Icons/precipitationIcon.svg">
+      <div>${data.precipitation}</div>
+  </div>
+</div>
+<div class="items-rightpart">
+  <img alt="sunnyicon" src="/Assets/HTML&CSS/Weather_Icons/sunnyIcon.svg" class="sunny-icon">
+  <div>${data.temperature}</div>
+</div>
+</div>`)
+  }
+
   /**
    * @param {string} hour current hour
    * @param {string} temperature current temperature
