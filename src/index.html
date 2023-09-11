@@ -22,7 +22,8 @@
                     <div class="top-img1">
                         <img id="top-img" src="../Assets/HTML&CSS/Icons_for_cities/anadyr.svg" alt="x">
                     </div>
-                    <div class="city-select">
+                    <div class="tooltip city-select">
+                        <span class="tooltiptext">select a city</span>
                         <input placeholder="select a city" value="Anadyr" list="data" class="option-select city" temp="" onfocus="this.temp=this.value; this.value='';">
                         <datalist value="Anadyr" class="option-select datalist-options" id="data" open="open">
 
@@ -76,9 +77,18 @@
             <div class="midsegment-top">
                 <div class="top-heading">Top cities around world</div>
                 <div class="top-icons">
-                    <img src ="/Assets/HTML&CSS/Weather_Icons/sunnyIcon.svg" class="mid-ic" id="sunny-ic" width="35vw" height="35vh" alt="sunnyicon">
-                    <img src ="/Assets/HTML&CSS/Weather_Icons/snowflakeIcon.svg" class="mid-ic" id="snowflake-ic" width="30vw" height="30vh" alt="snowflakeicon">
-                    <img src ="/Assets/HTML&CSS/Weather_Icons/rainyIcon.svg" class="mid-ic" id="rainy-ic" width="30vw" height="30vh" alt="rainyicon">
+                    <div class="tooltip">
+                        <img src ="/Assets/HTML&CSS/Weather_Icons/sunnyIcon.svg" class="mid-ic" id="sunny-ic" width="35vw" height="35vh" alt="sunnyicon">
+                        <span class="tooltiptext">Sunny icon</span>
+                    </div>
+                    <div class="tooltip">
+                        <img src ="/Assets/HTML&CSS/Weather_Icons/snowflakeIcon.svg" class="mid-ic" id="snowflake-ic" width="30vw" height="30vh" alt="snowflakeicon">
+                        <span class="tooltiptext">snow icon</span>
+                    </div>
+                    <div class="tooltip">
+                        <img src ="/Assets/HTML&CSS/Weather_Icons/rainyIcon.svg" class="mid-ic" id="rainy-ic" width="30vw" height="30vh" alt="rainyicon">
+                        <span class="tooltiptext">rainy icon</span>
+                    </div>
                     <h5 id="display-top">Display Top</h5>
                     <input id="select-icon" type="number" value="3" placeholder="counter" min="3" max="10">
                 </div>

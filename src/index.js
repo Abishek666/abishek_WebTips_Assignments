@@ -1,4 +1,5 @@
-import { months } from './data.js';
+import { months } from './data.js'
+let setTimerId
 
 (async function () {
   let allCityDetails = await fetchCityDetails()
@@ -11,13 +12,28 @@ import { months } from './data.js';
   allCityDetails = sortCityOptions(allCityDetails)
   loadSelectOptions(allCityDetails)
   changeHeaderValues()
+  selectIcon('sunny-ic')
   document.querySelector('.option-select.city').addEventListener('change', changeHeaderValues)
-  changeMiddleSegment(allCityDetails)
+  icons.forEach((ic) => ic.addEventListener('click', (e) => { selectIcon(e.target.id) }))
   getScrollWidth()
-  icons.forEach((ic) => ic.addEventListener('click', selectIcon))
   leftArrow.addEventListener('click', () => { scrollItems('left') })
   rightArrow.addEventListener('click', () => { scrollItems('right') })
   document.getElementById('select-icon').addEventListener('change', getCardCount)
+
+  /**
+   * This function will update live time based on cities
+   * @param {string} cityTimezone Timezone name
+   */
+  function updateHeaderTime (cityTimezone) {
+    const time = document.getElementsByClassName('time-text')[0]
+    console.log(cityTimezone)
+    let timeArray
+    setTimerId = setInterval(() => {
+      timeArray = new Date().toLocaleTimeString('en-US', { timeZone: cityTimezone }).split(' ')[0]
+      timeArray = timeArray.split(':')
+      time.innerHTML = timeArray[0] + ':' + timeArray[1] + ':' + '<small>' + timeArray[2] + '<small>'
+    }, 1000)
+  }
 
   /**
    *  This function will get the scrollwidth and clientwidth of the itemscontainer to display the arrow
@@ -69,13 +85,25 @@ import { months } from './data.js';
   }
 
   /**
-   *   This function selects the icon and add style. It calls the filter function
+   *
+   * @param {object} obj filtered cities object
+   * @param {string} key sorting parameter
    */
-  function selectIcon () {
+  function compareFunction (obj, key) {
+    console.log(key)
+    return Object.values(obj).sort((a, b) => { return parseInt(b[key]) - parseInt(a[key]) })
+  }
+
+  /**
+   *   This function selects the icon and add style. It calls the filter function
+   * @param {string} id Icon id
+   */
+  function selectIcon (id) {
+    console.log(id)
     if (selectedIcon !== ' ') { document.getElementById(selectedIcon).classList.remove('ic-click') }
-    selectedIcon = this.id
-    document.getElementById(this.id).classList.add('ic-click')
-    filterMiddleSegment(this.id)
+    selectedIcon = id
+    document.getElementById(selectedIcon).classList.add('ic-click')
+    filterMiddleSegment(selectedIcon)
   }
 
   /**
@@ -101,16 +129,14 @@ import { months } from './data.js';
     }
 
     )
-    if (iconId === 'sunny-ic')filterObject = compareFunction(filterObject, 'temperature')
-    else if (iconId === 'snowflake-ic')filterObject = compareFunction(filterObject, 'precipitation')
-    else filterObject = compareFunction(filterObject, 'humidity')
+
+    if (iconId === 'sunny-ic') {
+      console.log(iconId)
+      filterObject = compareFunction(filterObject, 'temperature')
+    } else if (iconId === 'snowflake-ic') { filterObject = compareFunction(filterObject, 'precipitation') } else { filterObject = compareFunction(filterObject, 'humidity') }
     middleSegmentCards = filterObject
     changeMiddleSegment(filterObject)
     getScrollWidth()
-  }
-
-  const compareFunction = (obj, key) => {
-    return Object.values(obj).sort((a, b) => { return parseInt(b[key]) - parseInt(a[key]) })
   }
 
   /**
@@ -241,6 +267,7 @@ import { months } from './data.js';
    *This function will change values if the option is changed in city selection
    */
   function changeHeaderValues () {
+    clearInterval(setTimerId)
     const selectedCity = document.getElementsByClassName('option-select')[0].value.toLowerCase()
     const cityDetails = allCityDetails[selectedCity]
     const time = document.getElementsByClassName('time-text')[0]
@@ -257,8 +284,7 @@ import { months } from './data.js';
     date.innerHTML = splitDate[1] + '-' + months[parseInt(splitDate[0]) - 1] + '-' + splitDate[2]
     const splitTime = separatedArray[1].split(':')
     const splitSecAndMeridiem = splitTime[2].split(' ')
-    time.innerHTML = splitTime[0] + ':' + splitTime[1] + ':' + '<small>' + splitSecAndMeridiem[0] + '<small>'
-
+    updateHeaderTime(cityDetails.timeZone)
     if (splitSecAndMeridiem[1] === 'PM') {
       timeState.src = '../Assets/HTML&CSS/GeneralImages&Icons/pmState.svg'
       time.classList.add('pm-state')
