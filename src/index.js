@@ -3,22 +3,22 @@ let setTimerId
 
 (async function () {
   let allCityDetails = await fetchCityDetails()
-  const icons = document.querySelectorAll('.mid-ic')
+  const weatherList = document.querySelectorAll('.mid-ic')
   const leftArrow = document.getElementById('left-scroll-arrow')
   const rightArrow = document.getElementById('right-scroll-arrow')
   let middleSegmentCards = allCityDetails
-  let selectedIcon = ' '
+  let selectedWeather = ' '
   let cardCount = document.getElementById('select-icon').value
   allCityDetails = sortCityOptions(allCityDetails)
   loadSelectOptions(allCityDetails)
   changeHeaderValues()
   selectIcon('sunny-ic')
   document.querySelector('.option-select.city').addEventListener('change', changeHeaderValues)
-  icons.forEach((ic) => ic.addEventListener('click', (e) => { selectIcon(e.target.id) }))
-  getScrollWidth()
+  weatherList.forEach((ic) => ic.addEventListener('click', (e) => { selectIcon(e.target.id) }))
+  sideArrowVisibility()
   leftArrow.addEventListener('click', () => { scrollItems('left') })
   rightArrow.addEventListener('click', () => { scrollItems('right') })
-  document.getElementById('select-icon').addEventListener('change', getCardCount)
+  document.getElementById('select-icon').addEventListener('change', updateMiddleCitiesScrollButtonVisibility)
 
   /**
    * This function will update live time based on cities
@@ -26,7 +26,6 @@ let setTimerId
    */
   function updateHeaderTime (cityTimezone) {
     const time = document.getElementsByClassName('time-text')[0]
-    console.log(cityTimezone)
     let timeArray
     setTimerId = setInterval(() => {
       timeArray = new Date().toLocaleTimeString('en-US', { timeZone: cityTimezone }).split(' ')[0]
@@ -38,9 +37,10 @@ let setTimerId
   /**
    *  This function will get the scrollwidth and clientwidth of the itemscontainer to display the arrow
    */
-  function getScrollWidth () {
-    const middleContainerWidth = document.getElementsByClassName('items-container')[0].clientWidth
-    const scrollContainerWidth = document.getElementsByClassName('items-container')[0].scrollWidth
+  function sideArrowVisibility () {
+    const middleCardContainer = document.getElementsByClassName('items-container')[0]
+    const middleContainerWidth = middleCardContainer.clientWidth
+    const scrollContainerWidth = middleCardContainer.scrollWidth
     if (middleContainerWidth >= scrollContainerWidth) {
       document.getElementsByClassName('left-arr')[0].style.display = 'none'
       document.getElementsByClassName('right-arr')[0].style.display = 'none'
@@ -48,16 +48,17 @@ let setTimerId
     } else {
       document.getElementsByClassName('left-arr')[0].style.display = 'block'
       document.getElementsByClassName('right-arr')[0].style.display = 'block'
+      document.getElementsByClassName('items-container')[0].style.justifyContent = 'start'
     }
   }
 
   /**
    * This function will get the value from spinner  and update the card numbers
    */
-  function getCardCount () {
+  function updateMiddleCitiesScrollButtonVisibility () {
     cardCount = document.getElementById('select-icon').value
     changeMiddleSegment(middleSegmentCards)
-    getScrollWidth()
+    sideArrowVisibility()
   }
 
   /**
@@ -80,18 +81,17 @@ let setTimerId
     const sortedKeys = Object.keys(data).sort()
     const result = { }
     sortedKeys.forEach((key) => { result[key] = data[key] })
-    console.log(result)
     return result
   }
 
   /**
-   *
-   * @param {object} obj filtered cities object
-   * @param {string} key sorting parameter
+   * This function will sort the objects based on weather type
+   * @param {object} citiesObject filtered cities object
+   * @param {string} weatherType sorting parameter
+   * @returns {object} sorted cities
    */
-  function compareFunction (obj, key) {
-    console.log(key)
-    return Object.values(obj).sort((a, b) => { return parseInt(b[key]) - parseInt(a[key]) })
+  function sortCitiesBasedOnWeatherType (citiesObject, weatherType) {
+    return citiesObject.sort((a, b) => { return parseInt(b[weatherType]) - parseInt(a[weatherType]) })
   }
 
   /**
@@ -99,46 +99,66 @@ let setTimerId
    * @param {string} id Icon id
    */
   function selectIcon (id) {
-    console.log(id)
-    if (selectedIcon !== ' ') { document.getElementById(selectedIcon).classList.remove('ic-click') }
-    selectedIcon = id
-    document.getElementById(selectedIcon).classList.add('ic-click')
-    filterMiddleSegment(selectedIcon)
+    if (selectedWeather !== ' ') { document.getElementById(selectedWeather).classList.remove('ic-click') }
+    selectedWeather = id
+    document.getElementById(selectedWeather).classList.add('ic-click')
+    filterMiddleSegment(selectedWeather)
   }
 
   /**
-   *  This function will filter the cities based on selected icons
+   *
+   * @param  {object} cities all city details
+   *  @returns {boolean}  filter sunny based on conditions
+   */
+  function filterSunny (cities) {
+    const temp = parseInt(cities.temperature)
+    const humid = parseInt(cities.humidity)
+    const precip = parseInt(cities.precipitation)
+    return temp > 29 && humid < 50 && precip >= 50
+  }
+  /**
+   *
+   * @param {object} cities all city details
+   *  @returns {boolean}  filter snowflake based on conditions
+   */
+  function filterSnowFlake (cities) {
+    const temp = parseInt(cities.temperature)
+    const humid = parseInt(cities.humidity)
+    const precip = parseInt(cities.precipitation)
+    return (temp >= 20 && temp <= 28) && humid > 50 && precip < 50
+  }
+  /**
+   *
+   * @param {object} cities all city details
+   * @returns {boolean}  filter rainy based on conditions
+   */
+  function filterRainy (cities) {
+    const temp = parseInt(cities.temperature)
+    const humid = parseInt(cities.humidity)
+    return (temp < 20) && humid >= 50
+  }
+
+  /**
+   *  This function will filter the cities based on selected icons and sort them
    * @param {string} iconId icon id for identification
    */
   function filterMiddleSegment (iconId) {
-    let filterObject = {}
+    let filteredObject = {}
     document.getElementsByClassName('items-container')[0].innerHTML = ' '
-    Object.values(allCityDetails).map((data) => {
-      const temp = parseInt(data.temperature.slice(0, 2))
-      const humid = parseInt(data.humidity.slice(0, -1))
-      const precip = parseInt(data.precipitation.slice(0, -1))
-      const key = data.cityName.toLowerCase()
-      if (iconId === 'sunny-ic' && temp > 29 && humid < 50 && precip >= 50) {
-        filterObject[key] = allCityDetails[key]
-      } else if (iconId === 'snowflake-ic' && (temp >= 20 && temp <= 28) && humid > 50 && precip < 50) {
-        filterObject[key] = allCityDetails[key]
-      } else if (iconId === 'rainy-ic' && (temp < 20) && humid >= 50) {
-        filterObject[key] = allCityDetails[key]
-      }
-      return 0
-    }
-
-    )
-
     if (iconId === 'sunny-ic') {
-      console.log(iconId)
-      filterObject = compareFunction(filterObject, 'temperature')
-    } else if (iconId === 'snowflake-ic') { filterObject = compareFunction(filterObject, 'precipitation') } else { filterObject = compareFunction(filterObject, 'humidity') }
-    middleSegmentCards = filterObject
-    changeMiddleSegment(filterObject)
-    getScrollWidth()
+      filteredObject = Object.values(allCityDetails).filter(filterSunny)
+      filteredObject = sortCitiesBasedOnWeatherType(filteredObject, 'temperature')
+    } else if (iconId === 'snowflake-ic') {
+      filteredObject = Object.values(allCityDetails).filter(filterSnowFlake)
+      filteredObject = sortCitiesBasedOnWeatherType(filteredObject, 'precipitation')
+    } else if (iconId === 'rainy-ic') {
+      filteredObject = Object.values(allCityDetails).filter(filterRainy)
+      filteredObject = sortCitiesBasedOnWeatherType(filteredObject, 'humidity')
+    }
+    middleSegmentCards = filteredObject
+    changeMiddleSegment(filteredObject)
+    sideArrowVisibility()
   }
-
   /**
    *    This function generate the card in container iteratively
    * @param {object}cities all city details
@@ -152,13 +172,13 @@ let setTimerId
       const card = document.createElement('div')
       card.classList.add('items-scroll')
       // console.log(value.cityName.toLowerCase())
-      card.innerHTML = changeCardDetailsTemplate(value)
+      card.innerHTML = getCardDetailsTemplate(value)
       middleContainer.appendChild(card)
       document.getElementsByClassName('items-scroll')[i].style.backgroundImage = "url('/Assets/HTML&CSS/Icons_for_cities/" + value.cityName.toLowerCase() + ".svg')"
       i = i + 1
       return 0
     })
-    getScrollWidth()
+    sideArrowVisibility()
   }
 
   /**
@@ -166,7 +186,7 @@ let setTimerId
    * @param {object} data individual city details
    * @returns {object} card template
    */
-  function changeCardDetailsTemplate (data) {
+  function getCardDetailsTemplate (data) {
     const time = data.dateAndTime.split(', ')[0].split('/')
     return (`<div class="items-leftpart">
   <div class="scroll-itemcity">${data.cityName}</div>
