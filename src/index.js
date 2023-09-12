@@ -1,7 +1,6 @@
 import { months } from './data.js'
-let setTimerId
-
 (async function () {
+  let setTimerId
   let allCityDetails = await fetchCityDetails()
   const weatherList = document.querySelectorAll('.mid-ic')
   const leftArrow = document.getElementById('left-scroll-arrow')
@@ -211,27 +210,16 @@ let setTimerId
   /**
    * @param {string} hour current hour
    * @param {string} temperature current temperature
-   * @param {number} flag to switch between if else
    * @returns {object} top scroll element
    */
-  function getCityTimeHtmlTemplate (hour, temperature, flag) {
-    if (flag === 0) {
-      return (`
-      <div class="item-time"> ${hour}</div>
+  function getCityTimeHtmlTemplate (hour, temperature) {
+    return (`
+      <div class="item-time"> ${hour ?? ''}</div>
       <div class="pipe">|</div>
       <div class="scroll-icon">
-      <img alt="weathericon" class="top-ic"></div>
-      <div class='num'> ${temperature} </div>
+      ${(temperature || hour) ? '<img alt="weathericon" class="top-ic"> </div>' : ''}
+      <div class='num'> ${temperature ?? ''} </div>
       `)
-    } else {
-      return (`
-      <div class="item-time"></div>
-      <div class="pipe">|</div>
-      <div class="scroll-icon">
-      </div>
-      <div class='num'> </div>
-      `)
-    }
   }
   /**
    * This function will change the icons for particular hour based on temperature value
@@ -257,7 +245,7 @@ let setTimerId
       if (i === 0) {
         const forecastTimeElement = document.createElement('div')
         forecastTimeElement.classList.add('topscroll-items')
-        forecastTimeElement.innerHTML = getCityTimeHtmlTemplate('Now', currentCity.temperature, 0)
+        forecastTimeElement.innerHTML = getCityTimeHtmlTemplate('Now', currentCity.temperature)
         topContainer.appendChild(forecastTimeElement)
         changeSelectedCityIcon(currentCity.temperature, i)
       } else {
@@ -269,7 +257,7 @@ let setTimerId
           if (state === 'PM') state = 'AM'
           else state = 'PM'
         }
-        forecastTimeElement.innerHTML = getCityTimeHtmlTemplate(hour.toString() + state, currentCity.nextFiveHrs[i - 1], 0)
+        forecastTimeElement.innerHTML = getCityTimeHtmlTemplate(hour.toString() + state, currentCity.nextFiveHrs[i - 1])
         topContainer.appendChild(forecastTimeElement)
         changeSelectedCityIcon(currentCity.nextFiveHrs[i - 1], i)
       }
@@ -277,7 +265,7 @@ let setTimerId
       if (i < 4) {
         const forecastTimeElement = document.createElement('div')
         forecastTimeElement.classList.add('topscroll-items')
-        forecastTimeElement.innerHTML = getCityTimeHtmlTemplate('', '', 1)
+        forecastTimeElement.innerHTML = getCityTimeHtmlTemplate('', '')
         topContainer.appendChild(forecastTimeElement)
       }
     }
