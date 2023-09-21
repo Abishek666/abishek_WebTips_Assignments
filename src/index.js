@@ -1,6 +1,9 @@
 import { months } from './data.js'
+
 (async function () {
-  let setTimerId
+  let setTimerId, setTimerIdBottom
+  let bottomItemCount = 0
+  const bottomContainerElements = document.getElementsByClassName('bottom-itemscontainer')[0]
   let allCityDetails = await fetchCityDetails()
   const weatherList = document.querySelectorAll('.mid-ic')
   const leftArrow = document.getElementById('left-scroll-arrow')
@@ -9,6 +12,8 @@ import { months } from './data.js'
   let selectedWeather = ' '
   let cardCount = document.getElementById('select-icon').value
   allCityDetails = sortCityOptions(allCityDetails)
+  let continentWiseObject = Object.values(allCityDetails)
+
   loadSelectOptions(allCityDetails)
   changeHeaderValues()
   selectIcon('sunny-ic')
@@ -18,7 +23,159 @@ import { months } from './data.js'
   leftArrow.addEventListener('click', () => { scrollItems('left') })
   rightArrow.addEventListener('click', () => { scrollItems('right') })
   document.getElementById('select-icon').addEventListener('change', updateMiddleCitiesScrollButtonVisibility)
+  changeBottomByContinents('down-arrow')
+  changeBottomByTemperature('up-arrow-temp')
+  document.querySelector('.continent-arrow').addEventListener('click', (e) => { changeBottomByContinents(e.target.id) })
+  document.querySelector('.temperature').addEventListener('click', (e) => { changeBottomByTemperature(e.target.id) })
 
+  /**
+   *  This function will update the bottom container elements based on continent sorting criteria
+   * @param {string} arrowId It is the arrow id of the arrow image
+   */
+  function changeBottomByContinents (arrowId) {
+    const continentArrow = document.getElementsByClassName('continent-arrow')[0]
+    if (arrowId === 'down-arrow') {
+      bottomItemCount = 0
+      continentArrow.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrowUp' + '.svg'
+      continentArrow.id = 'up-arrow'
+      clearInterval(setTimerIdBottom)
+      bottomContainerElements.innerHTML = ''
+      continentWiseObject = sortCitiesByContinent(continentWiseObject)
+      changeBottomSegment(continentWiseObject)
+    } else {
+      bottomItemCount = 0
+      continentArrow.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrowDown' + '.svg'
+      continentArrow.id = 'down-arrow'
+      clearInterval(setTimerIdBottom)
+      bottomContainerElements.innerHTML = ''
+      continentWiseObject = sortCitiesByContinent(continentWiseObject).reverse()
+      changeBottomSegment(continentWiseObject)
+    }
+  }
+
+  /**
+   *  This function will  sort the cities based on continent name
+   * @param {object}  cityDetails all city details
+   * @returns  {object} sorted cities
+   */
+  function sortCitiesByContinent (cityDetails) {
+    cityDetails.sort((a, b) => {
+      return (a.timeZone.split('/')[0]) < (b.timeZone.split('/')[0]) ? -1 : 1
+    })
+    return cityDetails
+  }
+
+  /**
+   *   This function will update the bottom container elements based on temperature sorting criteria
+   * @param {string} arrowId  It is the arrow id of the arrow image
+   */
+  function changeBottomByTemperature (arrowId) {
+    const citiesTemperature = document.getElementsByClassName('temperature-arrow')[0]
+    if (arrowId === 'up-arrow-temp') {
+      bottomItemCount = 0
+      citiesTemperature.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrowDown' + '.svg'
+      citiesTemperature.id = 'down-arrow-temp'
+      clearInterval(setTimerIdBottom)
+      bottomContainerElements.innerHTML = ''
+      continentWiseObject = sortCitiesByTemperature(continentWiseObject, 'desc')
+      changeBottomSegment(continentWiseObject)
+    } else {
+      bottomItemCount = 0
+      citiesTemperature.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrowUp' + '.svg'
+      citiesTemperature.id = 'up-arrow-temp'
+      clearInterval(setTimerIdBottom)
+      bottomContainerElements.innerHTML = ''
+      continentWiseObject = sortCitiesByTemperature(continentWiseObject, 'asc')
+      changeBottomSegment(continentWiseObject)
+    }
+  }
+
+  /**
+   *   This function will  sort the cities based on temperature
+   * @param {object} cityDetails all city details
+   * @param {string} order order to sort the elements
+   * @returns {object}  sorted cities
+   */
+  function sortCitiesByTemperature (cityDetails, order) {
+    cityDetails.sort((a, b) => {
+      if ((a.timeZone.split('/')[0]) !== (b.timeZone.split('/')[0])) {
+        return 0
+      } else {
+        if (order === 'asc') { return parseInt(a.temperature) - parseInt(b.temperature) } else {
+          return parseInt(b.temperature) - parseInt(a.temperature)
+        }
+      }
+    })
+    return cityDetails
+  }
+
+  /**
+   *   It will add elements to the bottom container
+   * @param {object}cities all city details
+   */
+  function changeBottomSegment (cities) {
+    const bottomContainer = document.getElementsByClassName('bottom-itemscontainer')[0]
+    cities.map((city) => {
+      if (bottomItemCount < 12) {
+        const card = document.createElement('div')
+        card.classList.add('container-elements')
+        card.innerHTML = getContinentWiseDataTemplate(city)
+        bottomContainer.appendChild(card)
+      }
+      return 0
+    }
+    )
+  }
+
+  /**
+   * It is the template for bottom element
+   * @param {string} city city details
+   * @returns {string} bottom element template
+   */
+  function getContinentWiseDataTemplate (city) {
+    const continents = city.timeZone.split('/')[0]
+    bottomItemCount = bottomItemCount + 1
+    const bottomContainerId = 'live-time-' + bottomItemCount
+    return (`<div class="cont">
+      ${continents}
+  </div>
+  <div class="city-time"> ${city.cityName + ', '} &nbsp;<div id= ${bottomContainerId} ${updateBottomTime(city.timeZone, bottomContainerId)}>
+  </div></div>
+  <div class="bottom-temp"> ${city.temperature}</div>
+  <div class="bottom-humidinfo">
+      <img alt="humidicon" src="/Assets/HTML&CSS/Weather_Icons/humidityIcon.svg" width="17vw" height="17vh">
+      <div>${city.humidity}</div>
+
+  </div>`)
+  }
+
+  /**
+   * It will update the bottom time
+   * @param {string}cityTimezone It is the timezone of the cities
+   * @param {string}itemName Id for each elements
+   */
+  function updateBottomTime (cityTimezone, itemName) {
+    const timeoutHandle = setTimeout(() => {
+      setTime(cityTimezone, itemName)
+      clearInterval(timeoutHandle)
+    }, 10)
+    setTimerIdBottom = setInterval(() => {
+      setTime(cityTimezone, itemName)
+    }, 60000)
+  }
+
+  /**
+   *  It will update the bottom time
+   * @param {string} cityTimezone It is the timezone of the cities
+   * @param {string}itemName  Id for each elements
+   */
+  function setTime (cityTimezone, itemName) {
+    const timeArray = new Date().toLocaleTimeString('en-US', { timeZone: cityTimezone }).split(' ')
+    const hourAndMin = timeArray[0].split(':')
+    if (document.getElementById(itemName) !== null) {
+      document.getElementById(itemName).innerHTML = ' ' + hourAndMin[0] + ':' + hourAndMin[1] + ' ' + timeArray[1]
+    }
+  }
   /**
    * This function will update live time based on cities
    * @param {string} cityTimezone Timezone name
@@ -170,7 +327,6 @@ import { months } from './data.js'
     data.slice(0, cardCount).map((value) => {
       const card = document.createElement('div')
       card.classList.add('items-scroll')
-      // console.log(value.cityName.toLowerCase())
       card.innerHTML = getCardDetailsTemplate(value)
       middleContainer.appendChild(card)
       document.getElementsByClassName('items-scroll')[i].style.backgroundImage = "url('/Assets/HTML&CSS/Icons_for_cities/" + value.cityName.toLowerCase() + ".svg')"
