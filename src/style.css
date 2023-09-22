@@ -242,6 +242,7 @@ input[type="number"]::-webkit-outer-spin-button
        animation-timing-function:ease-out;
        flex-shrink: 0;
        margin-right: 20px ;
+       border: 1.5px solid rgb(43 42 42);
    }
    
    
@@ -442,6 +443,7 @@ small{
 {width:15px;
 height:15px;
 margin-left: 10px;
+cursor: pointer;
 }
 
 .topic{
