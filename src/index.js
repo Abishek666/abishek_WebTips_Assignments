@@ -2,7 +2,6 @@ import { months } from './data.js'
 import { domElement } from './domElements.js'
 
 (async function () {
-  
   let setTimerId, setTimerIdBottom
   let bottomItemCount = 0
   let allCityDetails = await fetchCityDetails()
@@ -102,7 +101,7 @@ import { domElement } from './domElements.js'
   }
 
   /**
-   *   It will add elements to the bottom container
+   *  It will add elements to the bottom container
    * @param {object}cities all city details
    */
   function changeBottomSegment (cities) {
