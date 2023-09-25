@@ -5,16 +5,11 @@ import { domElement } from './domElements.js'
   let setTimerId, setTimerIdBottom
   let bottomItemCount = 0
   let allCityDetails = await fetchCityDetails()
-  // const weatherList = document.querySelectorAll('.mid-ic')
-  // const leftArrow = document.querySelector('#left-scroll-arrow')
-  // const rightArrow = document.querySelector('#right-scroll-arrow')
   let middleSegmentCards = allCityDetails
   let selectedWeather = ' '
   allCityDetails = sortCityOptions(allCityDetails)
   let continentWiseList = Object.values(allCityDetails)
-  // const optionSelectCity = document.querySelector('.option-select.city')
-  // const increaseMiddleCards = document.querySelector('#select-icon')
-  
+
   loadSelectOptions(allCityDetails)
   changeHeaderValues()
   selectIcon('sunny-ic')
