@@ -1,34 +1,28 @@
 import { months } from './data.js'
+import { domElement } from './domElements.js'
 
 (async function () {
   let setTimerId, setTimerIdBottom
   let bottomItemCount = 0
-  const bottomContainerElements = document.querySelector('.bottom-itemscontainer')
   let allCityDetails = await fetchCityDetails()
-  const weatherList = document.querySelectorAll('.mid-ic')
-  const leftArrow = document.querySelector('#left-scroll-arrow')
-  const rightArrow = document.querySelector('#right-scroll-arrow')
-  const continentArrow = document.querySelector('.continent-arrow')
-  const citiesTemperature = document.querySelector('.temperature-arrow')
   let middleSegmentCards = allCityDetails
   let selectedWeather = ' '
-  let cardCount = document.querySelector('#select-icon').value
   allCityDetails = sortCityOptions(allCityDetails)
   let continentWiseList = Object.values(allCityDetails)
 
   loadSelectOptions(allCityDetails)
   changeHeaderValues()
   selectIcon('sunny-ic')
-  document.querySelector('.option-select.city').addEventListener('change', changeHeaderValues)
-  weatherList.forEach((ic) => ic.addEventListener('click', (e) => { selectIcon(e.target.id) }))
+  domElement.optionSelectCity.addEventListener('change', changeHeaderValues)
+  domElement.weatherList.forEach((ic) => ic.addEventListener('click', (e) => { selectIcon(e.target.id) }))
   sideArrowVisibility()
-  leftArrow.addEventListener('click', () => { scrollItems('left') })
-  rightArrow.addEventListener('click', () => { scrollItems('right') })
-  document.querySelector('#select-icon').addEventListener('change', updateMiddleCitiesScrollButtonVisibility)
+  domElement.leftArrow.addEventListener('click', () => { scrollItems('left') })
+  domElement.rightArrow.addEventListener('click', () => { scrollItems('right') })
+  domElement.increaseMiddleCards.addEventListener('change', updateMiddleCitiesScrollButtonVisibility)
   changeBottomByContinents('up-arrow')
   changeBottomByTemperature('up-arrow-temp')
-  continentArrow.addEventListener('click', (e) => { changeBottomByContinents(e.target.id) })
-  citiesTemperature.addEventListener('click', (e) => { changeBottomByTemperature(e.target.id) })
+  domElement.continentArrow.addEventListener('click', (e) => { changeBottomByContinents(e.target.id) })
+  domElement.citiesTemperature.addEventListener('click', (e) => { changeBottomByTemperature(e.target.id) })
 
   /**
    *  This function will update the bottom container elements based on continent sorting criteria
@@ -37,14 +31,14 @@ import { months } from './data.js'
   function changeBottomByContinents (arrowId) {
     bottomItemCount = 0
     clearInterval(setTimerIdBottom)
-    bottomContainerElements.innerHTML = ''
+    domElement.bottomContainerElements.innerHTML = ''
     if (arrowId === 'down-arrow') {
-      continentArrow.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrow-up' + '.svg'
-      continentArrow.id = 'up-arrow'
+      domElement.continentArrow.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrow-up' + '.svg'
+      domElement.continentArrow.id = 'up-arrow'
       continentWiseList = sortCitiesByContinent(continentWiseList).reverse()
     } else {
-      continentArrow.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrow-down' + '.svg'
-      continentArrow.id = 'down-arrow'
+      domElement.continentArrow.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrow-down' + '.svg'
+      domElement.continentArrow.id = 'down-arrow'
       continentWiseList = sortCitiesByContinent(continentWiseList)
     }
     changeBottomSegment(continentWiseList)
@@ -69,14 +63,14 @@ import { months } from './data.js'
   function changeBottomByTemperature (arrowId) {
     bottomItemCount = 0
     clearInterval(setTimerIdBottom)
-    bottomContainerElements.innerHTML = ''
+    domElement.bottomContainerElements.innerHTML = ''
     if (arrowId === 'up-arrow-temp') {
-      citiesTemperature.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrow-down' + '.svg'
-      citiesTemperature.id = 'down-arrow-temp'
+      domElement.citiesTemperature.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrow-down' + '.svg'
+      domElement.citiesTemperature.id = 'down-arrow-temp'
       continentWiseList = sortCitiesByTemperature(continentWiseList, 'asc')
     } else {
-      citiesTemperature.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrow-up' + '.svg'
-      citiesTemperature.id = 'up-arrow-temp'
+      domElement.citiesTemperature.src = '/Assets/HTML&CSS/GeneralImages&Icons/' + 'arrow-up' + '.svg'
+      domElement.citiesTemperature.id = 'up-arrow-temp'
       continentWiseList = sortCitiesByTemperature(continentWiseList, 'desc')
     }
     changeBottomSegment(continentWiseList)
@@ -102,7 +96,7 @@ import { months } from './data.js'
   }
 
   /**
-   *   It will add elements to the bottom container
+   *  It will add elements to the bottom container
    * @param {object}cities all city details
    */
   function changeBottomSegment (cities) {
@@ -111,7 +105,7 @@ import { months } from './data.js'
         const card = document.createElement('div')
         card.classList.add('container-elements')
         card.innerHTML = getContinentWiseDataTemplate(city)
-        bottomContainerElements.appendChild(card)
+        domElement.bottomContainerElements.appendChild(card)
       }
     }
     )
@@ -188,16 +182,14 @@ import { months } from './data.js'
     const middleCardContainer = document.querySelector('.items-container')
     const middleContainerWidth = middleCardContainer.clientWidth
     const scrollContainerWidth = middleCardContainer.scrollWidth
-    const leftArrow = document.querySelector('.left-arr')
-    const rightArrow = document.querySelector('.right-arr')
     const itemsContainer = document.querySelector('.items-container')
     if (middleContainerWidth >= scrollContainerWidth) {
-      leftArrow.style.display = 'none'
-      rightArrow.style.display = 'none'
+      domElement.leftArrow.style.display = 'none'
+      domElement.rightArrow.style.display = 'none'
       itemsContainer.style.justifyContent = 'space-around'
     } else {
-      leftArrow.style.display = 'block'
-      rightArrow.style.display = 'block'
+      domElement.leftArrow.style.display = 'block'
+      domElement.rightArrow.style.display = 'block'
       itemsContainer.style.justifyContent = 'start'
     }
   }
@@ -206,7 +198,6 @@ import { months } from './data.js'
    * This function will get the value from spinner  and update the card numbers
    */
   function updateMiddleCitiesScrollButtonVisibility () {
-    cardCount = document.getElementById('select-icon').value
     changeMiddleSegment(middleSegmentCards)
     sideArrowVisibility()
   }
@@ -318,11 +309,12 @@ import { months } from './data.js'
     middleContainer.innerHTML = ''
     const data = Object.values(cities)
     let i = 0
-    data.slice(0, cardCount).forEach((value) => {
+    data.slice(0, domElement.cardCount.value).forEach((value) => {
       const card = document.createElement('div')
       card.classList.add('items-scroll')
       card.innerHTML = getCardDetailsTemplate(value)
       middleContainer.appendChild(card)
+      console.log(card)
       document.getElementsByClassName('items-scroll')[i].style.backgroundImage = "url('/Assets/HTML&CSS/Icons_for_cities/" + value.cityName.toLowerCase() + ".svg')"
       i = i + 1
     })
