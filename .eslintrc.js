@@ -33,6 +33,7 @@ module.exports = {
   ],
   rules: {
     'id-match': ['error', '^[a-z]+([A-Z][a-z]+)*$'],
-    '@html-eslint/id-naming-convention': ['error', 'kebab-case']
+    '@html-eslint/id-naming-convention': ['error', 'kebab-case'],
+    'new-cap': 'off'
   }
 }
