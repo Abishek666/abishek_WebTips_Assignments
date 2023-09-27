@@ -3,7 +3,7 @@ import { time } from './time.js'
 /**
  * It is the template for bottom element
  * @param {string} city city details
- * @param bottomItemCount
+ * @param {number}bottomItemCount no of items added in bottom
  * @returns {string} bottom element template
  */
 const getContinentWiseDataTemplate = (city, bottomItemCount) => {

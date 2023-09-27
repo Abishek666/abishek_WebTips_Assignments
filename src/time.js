@@ -31,7 +31,9 @@ const updateCityTileTime = (cityTimezone, itemName) => {
 /**
  * This function will update live time based on cities
  * @param {string} cityTimezone Timezone name
+ * @returns  {Array} returns the time array
  */
+
 const updateHeaderTime = (cityTimezone) => {
   const timeElement = document.querySelector('.time-text')
   let timeArray = new Date().toLocaleTimeString('en-US', { timeZone: cityTimezone }).split(' ')

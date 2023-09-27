@@ -3,10 +3,11 @@ import { domElement } from './domElements.js'
 
 /**
  *
- * @param cityDetails
+ * @param {object} cityDetails  individual city details
+ * this is the function for setting values of the object
  */
 function topSectionProto (cityDetails) {
-  this.cityDetails = cityDetails
+  // this.cityDetails = cityDetails
   this.cityName = cityDetails.cityName.toLowerCase()
   this.temperature = cityDetails.temperature
   this.humidity = cityDetails.humidity
@@ -30,11 +31,11 @@ topSectionProto.prototype.setTopTime = function () {
 
 /**
  *This function will change values if the option is changed in city selection
- * @param allCityDetails
+ * @param {string}cityName city name of the selected city
  */
-export const changeHeaderValues = () => {
+export const changeHeaderValues = (cityName) => {
   clearInterval(domElement.setTimerId)
-  const selectedCity = document.getElementsByClassName('option-select')[0].value.toLowerCase()
+  const selectedCity = cityName.toLowerCase()
   const cityDetails = domElement.allCityDetails[selectedCity]
   const city = new topSectionProto(cityDetails)
   city.updateTopMiddle()

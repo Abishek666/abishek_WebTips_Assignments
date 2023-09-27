@@ -1,11 +1,13 @@
 import { domElement } from './domElements.js'
 import { sortElements } from './sortElements.js'
 import { template } from './templates.js'
+
 /**
  *  This function will update the bottom container elements based on continent sorting criteria
  * @param {string} arrowId It is the arrow id of the arrow image
- * @param bottomItemCount
+ * @param {number}bottomItemCount no of items added in bottom
  */
+
 const changeBottomByContinents = (arrowId, bottomItemCount) => {
   bottomItemCount = 0
   domElement.bottomContainerElements.innerHTML = ''
@@ -24,8 +26,9 @@ const changeBottomByContinents = (arrowId, bottomItemCount) => {
 /**
  *   This function will update the bottom container elements based on temperature sorting criteria
  * @param {string} arrowId  It is the arrow id of the arrow image
- * @param bottomItemCount
+ * @param {number} bottomItemCount no of items added in bottom
  */
+
 const changeBottomByTemperature = (arrowId, bottomItemCount) => {
   bottomItemCount = 0
   domElement.bottomContainerElements.innerHTML = ''
@@ -45,8 +48,9 @@ const changeBottomByTemperature = (arrowId, bottomItemCount) => {
 /**
  *  It will add elements to the bottom container
  * @param {object}cities all city details
- * @param bottomItemCount
+ * @param {number} bottomItemCount no of Items added in bottom
  */
+
 const changeBottomSegment = (cities, bottomItemCount) => {
   cities.forEach((city) => {
     if (bottomItemCount < 12) {

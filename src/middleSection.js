@@ -96,6 +96,7 @@ const filterMiddleSegment = (iconId) => {
   } else if (iconId === 'snowflake-ic') {
     filteredObject = Object.values(domElement.allCityDetails).filter(filterSnowFlake)
     filteredObject = sortElements.sortCitiesBasedOnWeatherType(filteredObject, 'precipitation')
+    console.log(filteredObject)
   } else if (iconId === 'rainy-ic') {
     filteredObject = Object.values(domElement.allCityDetails).filter(filterRainy)
     filteredObject = sortElements.sortCitiesBasedOnWeatherType(filteredObject, 'humidity')

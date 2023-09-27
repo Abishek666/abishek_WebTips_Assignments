@@ -16,11 +16,12 @@ const changeSelectedCityIcon = (temp, i) => {
 /**
  *This function will change the top hourly temperature value for next 5 hours
  * @param {object} currentCity This object holds the current city value
- * @param temperature
- * @param nextFiveHrs
+ * @param {string} temperature temperature of current city
+ * @param {Array} nextFiveHrs next five hours of the current city
  * @param {string} hour current hour of the city
  * @param {string} state current Meridiem state
  */
+
 const changeTopScroll = (temperature, nextFiveHrs, hour, state) => {
   const topContainer = document.getElementsByClassName('top-end')[0]
   topContainer.innerHTML = ''

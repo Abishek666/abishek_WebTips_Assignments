@@ -12,7 +12,7 @@ import * as topProto from './basePrototype.js'
   topSection.loadSelectOptions(allCityDetails)
   topProto.changeHeaderValues()
   middleSection.selectIcon('sunny-ic')
-  domElement.optionSelectCity.addEventListener('change', () => topProto.changeHeaderValues())
+  domElement.optionSelectCity.addEventListener('change', (e) => topProto.changeHeaderValues(e.target.value))
   domElement.weatherList.forEach((ic) => ic.addEventListener('click', (e) => { middleSection.selectIcon(e.target.id) }))
   middleSection.sideArrowVisibility()
   domElement.leftArrow.addEventListener('click', () => { middleSection.scrollItems('left') })
