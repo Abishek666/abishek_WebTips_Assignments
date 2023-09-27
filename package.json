@@ -13,7 +13,8 @@
     "format": "prettier --write \"src/**/*.{js,html,css}\"",
     "lintJS": "eslint \"src/**/*.js\"",
     "lintHTML": "eslint \"src/**/*.html\"",
-    "lintCSS": "stylelint \"**/*.css\""
+    "lintCSS": "stylelint \"**/*.css\"",
+    "playwright": "npx playwright test tests/acceptance --pass-with-no-tests"
   },
   "keywords": [],
   "author": "",
