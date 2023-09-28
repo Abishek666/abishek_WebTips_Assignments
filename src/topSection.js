@@ -66,7 +66,6 @@ const setTopTime = (timeZone, temperature, nextFiveHrs) => {
   const timeText = document.querySelector('.time-text')
   const timeState = document.getElementById('time-img')
   const splitSecAndMeridiem = time.updateHeaderTime(timeZone)
-  console.log(splitSecAndMeridiem)
   if (splitSecAndMeridiem[1] === 'PM') {
     timeState.src = '../Assets/HTML&CSS/GeneralImages&Icons/pmState.svg'
     timeText.classList.add('pm-state')

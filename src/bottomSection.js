@@ -62,7 +62,6 @@ const changeBottomSegment = (cities, bottomItemCount) => {
     }
   }
   )
-  console.log(bottomItemCount)
   return bottomItemCount
 }
 
