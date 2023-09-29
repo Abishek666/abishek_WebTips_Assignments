@@ -1,4 +1,4 @@
-import { time } from './time.js'
+import { timeDetails } from './time.js'
 
 /**
  * It is the template for bottom element
@@ -12,7 +12,7 @@ const getContinentWiseDataTemplate = (city, bottomItemCount) => {
   return (`<div class="cont">
       ${continents}
   </div>
-  <div class="city-time"> ${city.cityName + ', '} &nbsp;<div id= ${bottomContainerId} ${time.updateCityTileTime(city.timeZone, bottomContainerId)}>
+  <div class="city-time"> ${city.cityName + ', '} &nbsp;<div id= ${bottomContainerId} ${timeDetails.updateCityTileTime(city.timeZone, bottomContainerId)}>
   </div></div>
   <div class="bottom-temp"> ${city.temperature}</div>
   <div class="bottom-humidinfo">

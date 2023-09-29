@@ -1,7 +1,6 @@
 import { months } from './data.js'
 import { template } from './templates.js'
-import { time } from './time.js'
-
+import { timeDetails } from './time.js'
 /**
  * This function will change the icons for particular hour based on temperature value
  * @param {string} temp current temperature
@@ -65,7 +64,7 @@ const setTopDate = (timeDateJson) => {
 const setTopTime = (timeZone, temperature, nextFiveHrs) => {
   const timeText = document.querySelector('.time-text')
   const timeState = document.getElementById('time-img')
-  const splitSecAndMeridiem = time.updateHeaderTime(timeZone)
+  const splitSecAndMeridiem = timeDetails.updateHeaderTime(timeZone)
   if (splitSecAndMeridiem[1] === 'PM') {
     timeState.src = '../Assets/HTML&CSS/GeneralImages&Icons/pmState.svg'
     timeText.classList.add('pm-state')

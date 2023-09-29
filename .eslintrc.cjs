@@ -14,7 +14,6 @@ module.exports = {
       env: {
         node: true
       },
-
       files: ['*.html'],
       parser: '@html-eslint/parser',
       extends: ['plugin:@html-eslint/recommended'],

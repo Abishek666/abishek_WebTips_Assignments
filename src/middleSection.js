@@ -1,10 +1,11 @@
 import { domElement } from './domElements.js'
 import { template } from './templates.js'
 import { sortElements } from './sortElements.js'
+import { filterObject } from './filterObjects.js'
 /**
  *  This function will get the scrollwidth and clientwidth of the itemscontainer to display the arrow
  */
-const sideArrowVisibility = () => {
+const updateScrollButtonsVisibility = () => {
   const middleCardContainer = document.querySelector('.items-container')
   const middleContainerWidth = middleCardContainer.clientWidth
   const scrollContainerWidth = middleCardContainer.scrollWidth
@@ -23,9 +24,9 @@ const sideArrowVisibility = () => {
 /**
  * This function will get the value from spinner  and update the card numbers
  */
-const updateMiddleCitiesScrollButtonVisibility = () => {
+const addCardsbySpinner = () => {
   changeMiddleSegment(domElement.middleSegmentCards[0])
-  sideArrowVisibility()
+  updateScrollButtonsVisibility()
 }
 
 /**
@@ -51,39 +52,6 @@ const selectIcon = (id) => {
 }
 
 /**
- *
- * @param  {object} cities all city details
- *  @returns {boolean}  filter sunny based on conditions
- */
-function filterSunny (cities) {
-  const temp = parseInt(cities.temperature)
-  const humid = parseInt(cities.humidity)
-  const precip = parseInt(cities.precipitation)
-  return temp > 29 && humid < 50 && precip >= 50
-}
-/**
- *
- * @param {object} cities all city details
- *  @returns {boolean}  filter snowflake based on conditions
- */
-function filterSnowFlake (cities) {
-  const temp = parseInt(cities.temperature)
-  const humid = parseInt(cities.humidity)
-  const precip = parseInt(cities.precipitation)
-  return (temp >= 20 && temp <= 28) && humid > 50 && precip < 50
-}
-/**
- *
- * @param {object} cities all city details
- * @returns {boolean}  filter rainy based on conditions
- */
-function filterRainy (cities) {
-  const temp = parseInt(cities.temperature)
-  const humid = parseInt(cities.humidity)
-  return (temp < 20) && humid >= 50
-}
-
-/**
  *  This function will filter the cities based on selected icons and sort them
  * @param {string} iconId icon id for identification
  */
@@ -91,19 +59,19 @@ const filterMiddleSegment = (iconId) => {
   let filteredObject = {}
   document.querySelector('.items-container').innerHTML = ' '
   if (iconId === 'sunny-ic') {
-    filteredObject = Object.values(domElement.allCityDetails).filter(filterSunny)
+    filteredObject = Object.values(domElement.allCityDetails).filter(filterObject.filterSunny)
     filteredObject = sortElements.sortCitiesBasedOnWeatherType(filteredObject, 'temperature')
   } else if (iconId === 'snowflake-ic') {
-    filteredObject = Object.values(domElement.allCityDetails).filter(filterSnowFlake)
+    filteredObject = Object.values(domElement.allCityDetails).filter(filterObject.filterSnowFlake)
     filteredObject = sortElements.sortCitiesBasedOnWeatherType(filteredObject, 'precipitation')
     console.log(filteredObject)
   } else if (iconId === 'rainy-ic') {
-    filteredObject = Object.values(domElement.allCityDetails).filter(filterRainy)
+    filteredObject = Object.values(domElement.allCityDetails).filter(filterObject.filterRainy)
     filteredObject = sortElements.sortCitiesBasedOnWeatherType(filteredObject, 'humidity')
   }
   domElement.middleSegmentCards[0] = filteredObject
   changeMiddleSegment(filteredObject)
-  sideArrowVisibility()
+  updateScrollButtonsVisibility()
 }
 /**
  *    This function generate the card in container iteratively
@@ -122,7 +90,7 @@ const changeMiddleSegment = (cities) => {
     document.getElementsByClassName('items-scroll')[i].style.backgroundImage = "url('/Assets/HTML&CSS/Icons_for_cities/" + value.cityName.toLowerCase() + ".svg')"
     i = i + 1
   })
-  sideArrowVisibility()
+  updateScrollButtonsVisibility()
 }
 
-export const middleSection = { sideArrowVisibility, updateMiddleCitiesScrollButtonVisibility, scrollItems, selectIcon, changeMiddleSegment, filterMiddleSegment }
+export const middleSection = { updateScrollButtonsVisibility, addCardsbySpinner, scrollItems, selectIcon, changeMiddleSegment, filterMiddleSegment }

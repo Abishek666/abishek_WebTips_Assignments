@@ -45,4 +45,4 @@ const updateHeaderTime = (cityTimezone) => {
   return [timeArray[0], timeArray[1]]
 }
 
-export const time = { updateCityTileTime, updateHeaderTime }
+export const timeDetails = { updateCityTileTime, updateHeaderTime }
