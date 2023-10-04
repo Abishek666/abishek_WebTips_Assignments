@@ -29,12 +29,27 @@ const updateCityTileTime = (cityTimezone, itemName) => {
 }
 
 /**
+ * This function will get the current date
+ * @param {string} cityTimezone Timezone name
+ * @returns  {Array} returns the date array
+ */
+
+const updateDate = (cityTimezone) => {
+  const currTime = new Date(new Date().toLocaleString('en-US', { timeZone: cityTimezone }))
+  const month = currTime.getMonth()
+  const year = currTime.getFullYear()
+  const date = currTime.getDate()
+  return [date, month, year]
+}
+
+/**
  * This function will update live time based on cities
  * @param {string} cityTimezone Timezone name
  * @returns  {Array} returns the time array
  */
 
 const updateHeaderTime = (cityTimezone) => {
+  clearInterval(domElement.setTimerId)
   const timeElement = document.querySelector('.time-text')
   let timeArray = new Date().toLocaleTimeString('en-US', { timeZone: cityTimezone }).split(' ')
   domElement.setTimerId = setInterval(() => {
@@ -45,4 +60,4 @@ const updateHeaderTime = (cityTimezone) => {
   return [timeArray[0], timeArray[1]]
 }
 
-export const timeDetails = { updateCityTileTime, updateHeaderTime }
+export const timeDetails = { updateCityTileTime, updateHeaderTime, updateDate }

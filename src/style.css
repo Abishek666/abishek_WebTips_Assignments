@@ -3,6 +3,14 @@
     bottom: 0;
 }
 
+.items-overlay {
+    position: absolute;
+    width: 80%;
+    z-index: 2;
+    overflow: auto;
+    height: 100%;
+}
+
 .scroll-arrow :hover 
 { opacity: 0.5 
 }

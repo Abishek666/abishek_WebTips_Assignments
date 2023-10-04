@@ -1,4 +1,5 @@
 import { timeDetails } from './time.js'
+import { middleSection } from './middleSection.js'
 
 /**
  * It is the template for bottom element
@@ -28,11 +29,10 @@ const getContinentWiseDataTemplate = (city, bottomItemCount) => {
  * @returns {object} card template
  */
 function getCardDetailsTemplate (data) {
-  const time = data.dateAndTime.split(', ')[0].split('/')
   return (`<div class="items-leftpart">
   <div class="scroll-itemcity">${data.cityName}</div>
   <div class="scroll-itemtime">${data.dateAndTime.split(', ')[1]}</div>
-  <div class="scroll-itemdate">${time[0] + '-' + time[1] + '-' + time[2]}</div>
+  <div class="scroll-itemdate">${middleSection.updateMiddleDate(data.timeZone)}</div>
   <div class="scrollitem-humidinfo">
       <img alt="humidityicon" src="/Assets/HTML&CSS/Weather_Icons/humidityIcon.svg">
       <div>${data.humidity}</div>

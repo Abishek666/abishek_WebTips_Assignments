@@ -2,6 +2,8 @@ import { domElement } from './domElements.js'
 import { template } from './templates.js'
 import { sortElements } from './sortElements.js'
 import { filterObject } from './filterObjects.js'
+import { timeDetails } from './time.js'
+import { months } from './data.js'
 /**
  *  This function will get the scrollwidth and clientwidth of the itemscontainer to display the arrow
  */
@@ -51,6 +53,11 @@ const selectIcon = (id) => {
   filterMiddleSegment(domElement.selectedWeather)
 }
 
+const updateMiddleDate = (timeZone) => {
+  const dateArray = timeDetails.updateDate(timeZone)
+  return dateArray[0] + '-' + months[parseInt(dateArray[1]) - 1] + '-' + dateArray[2]
+}
+
 /**
  *  This function will filter the cities based on selected icons and sort them
  * @param {string} iconId icon id for identification
@@ -89,8 +96,32 @@ const changeMiddleSegment = (cities) => {
     middleContainer.appendChild(card)
     document.getElementsByClassName('items-scroll')[i].style.backgroundImage = "url('/Assets/HTML&CSS/Icons_for_cities/" + value.cityName.toLowerCase() + ".svg')"
     i = i + 1
+    yScroll(card, document.querySelector('.items-container'))
   })
   updateScrollButtonsVisibility()
 }
 
-export const middleSection = { updateScrollButtonsVisibility, addCardsbySpinner, scrollItems, selectIcon, changeMiddleSegment, filterMiddleSegment }
+/**
+Method to scroll Middle section both Horizontally and Vertically
+ * @param {object} target - target element
+ * @param {object} targetContainer - underlying container
+ */
+function yScroll (target, targetContainer) {
+  target.addEventListener('wheel', (evt) => {
+    evt.preventDefault()
+
+    if (evt.deltaY !== 0) {
+      window.scrollBy({
+
+        top: evt.deltaY
+
+      })
+    }
+
+    if (evt.deltaX !== 0) {
+      targetContainer.scrollLeft += evt.deltaX
+    }
+  })
+}
+yScroll(document.querySelector('.items-overlay'), document.querySelector('.items-container'))
+export const middleSection = { updateMiddleDate, updateScrollButtonsVisibility, addCardsbySpinner, scrollItems, selectIcon, changeMiddleSegment, filterMiddleSegment }
