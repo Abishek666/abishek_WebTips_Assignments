@@ -54,7 +54,7 @@ const selectIcon = (id) => {
 }
 
 const updateMiddleDate = (timeZone) => {
-  const dateArray = timeDetails.updateDate(timeZone)
+  const dateArray = timeDetails.getDate(timeZone)
   return dateArray[0] + '-' + months[parseInt(dateArray[1]) - 1] + '-' + dateArray[2]
 }
 
@@ -96,7 +96,7 @@ const changeMiddleSegment = (cities) => {
     middleContainer.appendChild(card)
     document.getElementsByClassName('items-scroll')[i].style.backgroundImage = "url('/Assets/HTML&CSS/Icons_for_cities/" + value.cityName.toLowerCase() + ".svg')"
     i = i + 1
-    yScroll(card, document.querySelector('.items-container'))
+    scrollEventPassing(card, document.querySelector('.items-container'))
   })
   updateScrollButtonsVisibility()
 }
@@ -106,7 +106,7 @@ Method to scroll Middle section both Horizontally and Vertically
  * @param {object} target - target element
  * @param {object} targetContainer - underlying container
  */
-function yScroll (target, targetContainer) {
+function scrollEventPassing (target, targetContainer) {
   target.addEventListener('wheel', (evt) => {
     evt.preventDefault()
 
@@ -123,5 +123,5 @@ function yScroll (target, targetContainer) {
     }
   })
 }
-yScroll(document.querySelector('.items-overlay'), document.querySelector('.items-container'))
+scrollEventPassing(document.querySelector('.items-overlay'), document.querySelector('.items-container'))
 export const middleSection = { updateMiddleDate, updateScrollButtonsVisibility, addCardsbySpinner, scrollItems, selectIcon, changeMiddleSegment, filterMiddleSegment }

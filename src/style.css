@@ -9,6 +9,7 @@
     z-index: 2;
     overflow: auto;
     height: 100%;
+    left: 10vw;
 }
 
 .scroll-arrow :hover 
@@ -183,6 +184,7 @@ input[type="number"]::-webkit-outer-spin-button
         padding-left: 0;
         padding-right: 0;
        display: grid;
+       position: relative;
        grid-template-columns: 0.5fr 5fr 0.5fr;
 }
 

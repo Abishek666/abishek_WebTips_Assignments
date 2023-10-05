@@ -56,7 +56,7 @@ const changeTopScroll = (temperature, nextFiveHrs, hour, state) => {
 }
 
 const setTopDate = (timeZone) => {
-  const dateArray = timeDetails.updateDate(timeZone)
+  const dateArray = timeDetails.getDate(timeZone)
   const date = document.getElementById('date-text')
   date.innerHTML = dateArray[0] + '-' + months[parseInt(dateArray[1]) - 1] + '-' + dateArray[2]
 }

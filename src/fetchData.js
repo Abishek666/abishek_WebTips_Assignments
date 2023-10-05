@@ -4,13 +4,12 @@ import { sortElements } from './sortElements.js'
  * @returns {object} cityDetails
  */
 export async function fetchCityDetails () {
-  let cityDetails = await fetch('https://soliton.glitch.me/all-timezone-cities')
-    .then((res) => { return res.json() })
-    .then((data) => { return data })
+  const getCityDetailsUrl = 'https://soliton.glitch.me/all-timezone-cities'
+  let cityDetails = await fetch(getCityDetailsUrl)
+  cityDetails = await cityDetails.json()
   const cityDetailsObject = {}
-  cityDetails.map((items) => {
+  cityDetails.forEach((items) => {
     cityDetailsObject[items.cityName.toLowerCase()] = items
-    return 0
   })
   cityDetails = cityDetailsObject
   cityDetails = sortElements.sortCityOptions(cityDetails)
@@ -38,8 +37,8 @@ export async function fetchNextHours (dateAndTime, cityName) {
     },
     body: JSON.stringify(body)
   }
-  const fetchRes = await fetch('https://soliton.glitch.me/hourly-forecast', request)
-    .then(res => res.json())
-    .then(d => { return d })
+  const getNextFiveHourUrl = 'https://soliton.glitch.me/hourly-forecast'
+  let fetchRes = await fetch(getNextFiveHourUrl, request)
+  fetchRes = await fetchRes.json()
   return fetchRes
 }

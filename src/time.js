@@ -34,7 +34,7 @@ const updateCityTileTime = (cityTimezone, itemName) => {
  * @returns  {Array} returns the date array
  */
 
-const updateDate = (cityTimezone) => {
+const getDate = (cityTimezone) => {
   const currTime = new Date(new Date().toLocaleString('en-US', { timeZone: cityTimezone }))
   const month = currTime.getMonth()
   const year = currTime.getFullYear()
@@ -60,4 +60,4 @@ const updateHeaderTime = (cityTimezone) => {
   return [timeArray[0], timeArray[1]]
 }
 
-export const timeDetails = { updateCityTileTime, updateHeaderTime, updateDate }
+export const timeDetails = { updateCityTileTime, updateHeaderTime, getDate }
