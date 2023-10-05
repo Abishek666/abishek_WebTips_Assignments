@@ -20,6 +20,6 @@ import { changeHeaderValues } from './baseClass.js'
   domElement.increaseMiddleCards.addEventListener('change', middleSection.addCardsbySpinner)
   bottomItemCount = bottomSection.changeBottomByContinents('up-arrow', bottomItemCount)
   bottomItemCount = bottomSection.changeBottomByTemperature('up-arrow-temp', bottomItemCount)
-  domElement.continentArrow.addEventListener('click', (e) => { console.log('x');bottomItemCount = bottomSection.changeBottomByContinents(e.target.id, bottomItemCount) })
+  domElement.continentArrow.addEventListener('click', (e) => { bottomItemCount = bottomSection.changeBottomByContinents(e.target.id, bottomItemCount) })
   domElement.citiesTemperature.addEventListener('click', (e) => { bottomItemCount = bottomSection.changeBottomByTemperature(e.target.id, bottomItemCount) })
 })()
