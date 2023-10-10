@@ -45,10 +45,10 @@ export const changeHeaderValues = (cityName) => {
   city.updateTopMiddle()
   city.setTopDate()
   city.setTopTime()
-
+  const oneHourInMs = 3600000
   setInterval(() => {
     city.updateTopMiddle()
     city.setTopDate()
     city.setTopTime()
-  }, 1000 * 60 * 60)
+  }, oneHourInMs)
 }

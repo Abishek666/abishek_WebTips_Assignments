@@ -107,21 +107,22 @@ Method to scroll Middle section both Horizontally and Vertically
  * @param {object} targetContainer - underlying container
  */
 function scrollEventPassing (target, targetContainer) {
-  target.addEventListener('wheel', (evt) => {
-    evt.preventDefault()
+  target.addEventListener('wheel', (event) => {
+    event.preventDefault()
 
-    if (evt.deltaY !== 0) {
+    if (event.deltaY !== 0) {
       window.scrollBy({
 
-        top: evt.deltaY
+        top: event.deltaY
 
       })
     }
 
-    if (evt.deltaX !== 0) {
-      targetContainer.scrollLeft += evt.deltaX
+    if (event.deltaX !== 0) {
+      targetContainer.scrollLeft += event.deltaX
     }
   })
 }
+
 scrollEventPassing(document.querySelector('.items-overlay'), document.querySelector('.items-container'))
 export const middleSection = { updateMiddleDate, updateScrollButtonsVisibility, addCardsbySpinner, scrollItems, selectIcon, changeMiddleSegment, filterMiddleSegment }

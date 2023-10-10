@@ -22,4 +22,5 @@ import { changeHeaderValues } from './baseClass.js'
   bottomItemCount = bottomSection.changeBottomByTemperature('up-arrow-temp', bottomItemCount)
   domElement.continentArrow.addEventListener('click', (e) => { bottomItemCount = bottomSection.changeBottomByContinents(e.target.id, bottomItemCount) })
   domElement.citiesTemperature.addEventListener('click', (e) => { bottomItemCount = bottomSection.changeBottomByTemperature(e.target.id, bottomItemCount) })
+  document.querySelector('#body').classList.add('overflow-body-scroll')
 })()
