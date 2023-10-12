@@ -1,12 +1,10 @@
 import { sortElements } from './sortElements.js'
-const baseUrl = 'https://soliton.glitch.me/'
 /**
  * This function will fetch data from JSON file using fetch api
  * @returns {object} cityDetails
  */
 export async function fetchCityDetails () {
-  const getCityDetailsUrl = `${baseUrl}all-timezone-cities`
-  let cityDetails = await fetch(getCityDetailsUrl)
+  let cityDetails = await fetch('/all-city-timezones')
   cityDetails = await cityDetails.json()
   document.querySelector('.page-loader').style.display = 'none'
   const cityDetailsObject = {}
@@ -39,8 +37,8 @@ export async function fetchNextHours (dateAndTime, cityName) {
     },
     body: JSON.stringify(body)
   }
-  const getNextFiveHourUrl = `${baseUrl}hourly-forecast`
-  let fetchRes = await fetch(getNextFiveHourUrl, request)
+  let fetchRes = await fetch('/get-hourly-details', request)
   fetchRes = await fetchRes.json()
+  console.log(fetchRes)
   return fetchRes
 }
