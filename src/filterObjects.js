@@ -9,6 +9,7 @@ const filterSunny = (cities) => {
   const precip = parseInt(cities.precipitation)
   return temp > 29 && humid < 50 && precip >= 50
 }
+
 /**
  *
  * @param {object} cities all city details

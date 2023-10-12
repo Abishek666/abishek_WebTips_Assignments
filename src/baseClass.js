@@ -1,5 +1,6 @@
 import { topSection } from './topSection.js'
 import { domElement } from './domElements.js'
+import * as data from './fetchData.js'
 
 /**
  *
@@ -8,13 +9,15 @@ import { domElement } from './domElements.js'
  */
 class topSectionProto {
   constructor (cityDetails) {
+    this.cityDetails = cityDetails
     this.cityName = cityDetails.cityName.toLowerCase()
     this.temperature = cityDetails.temperature
     this.humidity = cityDetails.humidity
+    this.dateAndTime = cityDetails.dateAndTime
     this.precipitation = cityDetails.precipitation
     this.timeZone = cityDetails.timeZone
     this.dateAndTime = cityDetails.dateAndTime
-    this.nextFiveHrs = cityDetails.nextFiveHrs
+    this.nextFiveHrs = {}
   }
 
   updateTopMiddle () {
@@ -22,11 +25,12 @@ class topSectionProto {
   }
 
   setTopDate () {
-    topSection.setTopTime(this.timeZone, this.temperature, this.nextFiveHrs)
+    topSection.setTopDate(this.timeZone)
   }
 
-  setTopTime () {
-    topSection.setTopTime(this.timeZone, this.temperature, this.nextFiveHrs)
+  async setTopTime () {
+    this.nextFiveHrs = await data.fetchNextHours(this.dateAndTime, this.cityDetails.cityName)
+    topSection.setTopTime(this.timeZone, this.temperature, this.nextFiveHrs.temperature)
   }
 }
 /**
@@ -41,4 +45,10 @@ export const changeHeaderValues = (cityName) => {
   city.updateTopMiddle()
   city.setTopDate()
   city.setTopTime()
+  const oneHourInMs = 3600000
+  setInterval(() => {
+    city.updateTopMiddle()
+    city.setTopDate()
+    city.setTopTime()
+  }, oneHourInMs)
 }

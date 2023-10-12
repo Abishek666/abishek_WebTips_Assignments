@@ -1,6 +1,7 @@
 import { months } from './data.js'
 import { template } from './templates.js'
 import { timeDetails } from './time.js'
+
 /**
  * This function will change the icons for particular hour based on temperature value
  * @param {string} temp current temperature
@@ -54,11 +55,10 @@ const changeTopScroll = (temperature, nextFiveHrs, hour, state) => {
   }
 }
 
-const setTopDate = (timeDateJson) => {
+const setTopDate = (timeZone) => {
+  const dateArray = timeDetails.getDate(timeZone)
   const date = document.getElementById('date-text')
-  const separatedArray = timeDateJson.split(', ')
-  const splitDate = separatedArray[0].split('/')
-  date.innerHTML = splitDate[1] + '-' + months[parseInt(splitDate[0]) - 1] + '-' + splitDate[2]
+  date.innerHTML = dateArray[0] + '-' + months[parseInt(dateArray[1]) - 1] + '-' + dateArray[2]
 }
 
 const setTopTime = (timeZone, temperature, nextFiveHrs) => {
