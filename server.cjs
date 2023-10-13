@@ -3,6 +3,8 @@ const path = require('path')
 const fs = require('fs')
 const timezone = require('./src/timeZone.cjs')
 let allCityData = ''
+const allCityDataUrl = '/all-city-timezones'
+const nextNhoursWeatherUrl = '/get-hourly-details'
 http.createServer(function (req, res) {
   const reqUrl = req.url
   let contentType = 'text/html'
@@ -27,15 +29,16 @@ http.createServer(function (req, res) {
       filePath = '/Assets/HTML&CSS/Weather_Icons/cloudyIcon.svg'
       contentType = 'image/svg+xml'
       break
-    case '.png':
+    default:
+      contentType = 'text/html'
   }
-  if (req.url === '/all-city-timezones') {
+  if (req.url === allCityDataUrl) {
     allCityData = timezone.allTimeZones()
     res.writeHead(200, { 'Content-Type': 'application/json' })
     res.end(JSON.stringify(allCityData))
   }
 
-  if (req.url === '/get-hourly-details' && req.method === 'POST') {
+  if (req.url === nextNhoursWeatherUrl && req.method === 'POST') {
     let postData = ''
     req.on('data', (chunk) => {
       postData += chunk
@@ -60,4 +63,4 @@ http.createServer(function (req, res) {
       res.end(data)
     }
   })
-}).listen(4000)
+}).listen(5000, () => { console.log('App running in port 5000')})
