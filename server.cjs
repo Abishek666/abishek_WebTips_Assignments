@@ -22,4 +22,4 @@ app.post('/get-hourly-details', function (req, res) {
   res.json(data)
 })
 
-app.listen(5000, () => console.log('app running in port 5000'))
+app.listen(5000, () => console.log('app running in http://localhost:5000/'))
