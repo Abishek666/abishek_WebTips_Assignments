@@ -14,7 +14,8 @@
     "lintJS": "eslint \"src/**/*.js\"",
     "lintHTML": "eslint \"src/**/*.html\"",
     "lintCSS": "stylelint \"**/*.css\"",
-    "playwright": "npx playwright test tests/acceptance --pass-with-no-tests"
+    "playwright": "npx playwright test tests/acceptance --pass-with-no-tests",
+    "start": "node express.cjs"
   },
   "keywords": [],
   "author": "",
