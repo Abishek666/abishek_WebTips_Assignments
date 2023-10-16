@@ -1,4 +1,4 @@
-const timezone = require('./src/timeZone.cjs')
+const timezone = require('abi-timezones-npm-packages')
 
 process.on('message', (msg) => {
   if (msg[0] === 'all-city-timezones') {

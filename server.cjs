@@ -26,4 +26,4 @@ app.post('/get-hourly-details', function (req, res) {
   })
 })
 
-app.listen(5000, () => console.log('app running in http://localhost:5000/'))
+app.listen(8080, () => console.log('app running in http://localhost:8080/'))
