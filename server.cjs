@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const { fork } = require('child_process')
+const { fork, exec } = require('child_process')
 
 const app = express()
 
@@ -29,3 +29,6 @@ app.post('/get-hourly-details', function (req, res) {
 })
 
 app.listen(8080, () => console.log('server starting at http://localhost:8080/'))
+
+const url = 'http://localhost:8080'
+exec('start' + ' ' + url)
