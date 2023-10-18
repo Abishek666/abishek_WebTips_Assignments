@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const timezone = require('./src/timeZone.cjs')
+const { fork, exec } = require('child_process')
 
 const app = express()
 
@@ -10,16 +10,25 @@ app.use(express.static(path.join(__dirname, '/src')))
 app.use(express.static(__dirname))
 app.use(express.json())
 app.get('/all-city-timezones', function (req, res) {
-  allCityData = timezone.allTimeZones()
-  res.json(allCityData)
+  const childProcess = fork('./childThread.cjs')
+  childProcess.send({ fetchString: 'all-city-timezones' })
+  childProcess.on('message', (msg) => {
+    allCityData = msg
+    res.json(msg)
+    childProcess.kill()
+  })
 })
 
 app.post('/get-hourly-details', function (req, res) {
-  const postData = req.body
-  const citydn = postData.city_Date_Time_Name
-  const hours = postData.hours
-  const data = timezone.nextNhoursWeather(citydn, hours, allCityData)
-  res.json(data)
+  const childProcess = fork('./childThread.cjs')
+  childProcess.send({ fetchString: 'get-hourly-details', requestBody: req.body, cityDetails: allCityData })
+  childProcess.on('message', (msg) => {
+    res.json(msg)
+    childProcess.kill()
+  })
 })
 
-app.listen(5000, () => console.log('app running in http://localhost:5000/'))
+app.listen(8080, () => console.log('server starting at http://localhost:8080/'))
+
+const url = 'http://localhost:8080'
+exec('start' + ' ' + url)

@@ -2,7 +2,7 @@ import { domElement } from './domElements.js'
 /**
  *  It will update the bottom time
  * @param {string} cityTimezone It is the timezone of the cities
- * @param {string}itemName  Id for each elements
+ * @param {string} itemName  Id for each elements
  */
 function setTime (cityTimezone, itemName) {
   const timeElement = document.getElementById(itemName)
