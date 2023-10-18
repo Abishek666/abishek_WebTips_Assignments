@@ -11,19 +11,21 @@ app.use(express.static(__dirname))
 app.use(express.json())
 app.get('/all-city-timezones', function (req, res) {
   const childProcess = fork('./childThread.cjs')
-  childProcess.send(['all-city-timezones'])
+  childProcess.send({ fetchString: 'all-city-timezones' })
   childProcess.on('message', (msg) => {
     allCityData = msg
     res.json(msg)
+    childProcess.kill()
   })
 })
 
 app.post('/get-hourly-details', function (req, res) {
   const childProcess = fork('./childThread.cjs')
-  childProcess.send(['get-hourly-details', req.body, allCityData])
+  childProcess.send({ fetchString: 'get-hourly-details', requestBody: req.body, cityDetails: allCityData })
   childProcess.on('message', (msg) => {
     res.json(msg)
+    childProcess.kill()
   })
 })
 
-app.listen(8080, () => console.log('app running in http://localhost:8080/'))
+app.listen(8080, () => console.log('server starting at http://localhost:8080/'))
